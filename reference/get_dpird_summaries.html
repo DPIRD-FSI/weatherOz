@@ -88,15 +88,15 @@ for the station of interest.</p></dd>
 
 
 <dt>start_date</dt>
-<dd><p>A <code>character</code> string representing the beginning of the
-range to query in the format 'yyyy-mm-dd' (ISO8601).  Will return data
-inclusive of this range.</p></dd>
+<dd><p>A <code>character</code> string or <code>Date</code> object representing the
+beginning of the range to query in the format 'yyyy-mm-dd' (ISO8601).  Will
+return data inclusive of this range.</p></dd>
 
 
 <dt>end_date</dt>
-<dd><p>A <code>character</code> string representing the end of the range query
-in the format 'yyyy-mm-dd' (ISO8601).  Will return data inclusive of this
-range.  Defaults to the current system date.</p></dd>
+<dd><p>A <code>character</code> string or <code>Date</code> object representing the end of
+the range query in the format 'yyyy-mm-dd' (ISO8601).  Will return data
+inclusive of this range.  Defaults to the current system date.</p></dd>
 
 
 <dt>interval</dt>
@@ -221,14 +221,16 @@ useful for historical purposes.</p></dd>
 
 <p>a <a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table::data.table</a> with 'station_code' and date interval
 queried together with the requested weather variables in alphabetical
-order. The first ten columns will always be:</p><ul><li><p>'station_code',</p></li>
-<li><p>'station_name',</p></li>
-<li><p>'period_year',</p></li>
-<li><p>'period_month',</p></li>
-<li><p>'period_day',</p></li>
-<li><p>'period_hour',</p></li>
-<li><p>'period_minute' and if 'period_month' or finer is present,</p></li>
-<li><p>'date' (a combination of year, month, day, hour, minute as appropriate).</p></li>
+order. The first ten columns will always be:</p><ul><li><p>station_code,</p></li>
+<li><p>station_name,</p></li>
+<li><p>latitude,</p></li>
+<li><p>longitude,</p></li>
+<li><p>year,</p></li>
+<li><p>month,</p></li>
+<li><p>day,</p></li>
+<li><p>hour,</p></li>
+<li><p>minute, and if month or finer is present,</p></li>
+<li><p>date (a combination of year, month, day, hour, minute as appropriate).</p></li>
 </ul></div>
     <div id="note">
     <h2>Note</h2>

@@ -58,6 +58,9 @@
     <loc>/reference/get_coastal_forecast.html</loc>
   </url>
   <url>
+    <loc>/reference/get_data_drill.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_dpird_availability.html</loc>
   </url>
   <url>
@@ -70,6 +73,9 @@
     <loc>/reference/get_extreme_weather.html</loc>
   </url>
   <url>
+    <loc>/reference/get_patched_point.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_precis_forecast.html</loc>
   </url>
   <url>
@@ -77,9 +83,6 @@
   </url>
   <url>
     <loc>/reference/get_satellite_imagery.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_silo.html</loc>
   </url>
   <url>
     <loc>/reference/get_station_metadata.html</loc>
