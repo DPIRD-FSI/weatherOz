@@ -133,8 +133,34 @@ useful for historical purposes.</p></dd>
 <dt>api_key</dt>
 <dd><p>A <code>character</code> string containing your <acronym>API</acronym> key from
 <acronym>DPIRD</acronym>, <a href="https://www.agric.wa.gov.au/web-apis" class="external-link">https://www.agric.wa.gov.au/web-apis</a>, for the
-<acronym>DPIRD</acronym> Weather 2.0 <acronym>API</acronym>.</p><div class="section">
-<h3 id="available-values-for-which-values-">Available Values for <code>which_values</code>:<a class="anchor" aria-label="anchor" href="#available-values-for-which-values-"></a></h3>
+<acronym>DPIRD</acronym> Weather 2.0 <acronym>API</acronym>.</p></dd>
+
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>a <a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table::data.table</a> with 'station_code' and date interval
+queried together with the requested weather variables in alphabetical
+order. The first ten columns will always be:</p><ul><li><p>station_code,</p></li>
+<li><p>station_name,</p></li>
+<li><p>latitude,</p></li>
+<li><p>longitude,</p></li>
+<li><p>year,</p></li>
+<li><p>month,</p></li>
+<li><p>day,</p></li>
+<li><p>hour,</p></li>
+<li><p>minute, and if month or finer is present,</p></li>
+<li><p>date (a combination of year, month, day, hour, minute as appropriate).</p></li>
+</ul></div>
+    <div id="note">
+    <h2>Note</h2>
+    <p>Please note this function converts date-time columns from Coordinated
+Universal Time 'UTC' to Australian Western Standard Time 'AWST'.</p>
+    </div>
+    <div id="available-values-for-which-values">
+    <h2>Available Values for <code>which_values</code></h2>
+    
 
 <ul><li><p>all (which will return all of the following values),</p></li>
 <li><p>airTemperature,</p></li>
@@ -212,31 +238,7 @@ useful for historical purposes.</p></dd>
 <li><p>wind,</p></li>
 <li><p>windAvgSpeed, and</p></li>
 <li><p>windMaxSpeed</p></li>
-</ul></div></dd>
-
-</dl></div>
-    <div id="value">
-    <h2>Value</h2>
-    
-
-<p>a <a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table::data.table</a> with 'station_code' and date interval
-queried together with the requested weather variables in alphabetical
-order. The first ten columns will always be:</p><ul><li><p>station_code,</p></li>
-<li><p>station_name,</p></li>
-<li><p>latitude,</p></li>
-<li><p>longitude,</p></li>
-<li><p>year,</p></li>
-<li><p>month,</p></li>
-<li><p>day,</p></li>
-<li><p>hour,</p></li>
-<li><p>minute, and if month or finer is present,</p></li>
-<li><p>date (a combination of year, month, day, hour, minute as appropriate).</p></li>
 </ul></div>
-    <div id="note">
-    <h2>Note</h2>
-    <p>Please note this function converts date-time columns from Coordinated
-Universal Time 'UTC' to Australian Western Standard Time 'AWST'.</p>
-    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other DPIRD: 
@@ -248,30 +250,31 @@ Universal Time 'UTC' to Australian Western Standard Time 'AWST'.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># You must have a DPIRD API key to proceed</span></span></span>
-<span class="r-in"><span><span class="co"># Set date interval for yearly request</span></span></span>
-<span class="r-in"><span><span class="co"># Get rainfall summary</span></span></span>
-<span class="r-in"><span><span class="va">start_date</span> <span class="op">&lt;-</span> <span class="st">"20171028"</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Use default for end data (current system date)</span></span></span>
-<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">get_dpird_summaries</span><span class="op">(</span></span></span>
-<span class="r-in"><span>            station_code <span class="op">=</span> <span class="st">"CL001"</span>,</span></span>
-<span class="r-in"><span>            start_date <span class="op">=</span> <span class="va">start_date</span>,</span></span>
-<span class="r-in"><span>            api_key <span class="op">=</span> <span class="st">"YOUR API KEY"</span>,</span></span>
-<span class="r-in"><span>            interval <span class="op">=</span> <span class="st">"yearly"</span>,</span></span>
-<span class="r-in"><span>            which_values <span class="op">=</span> <span class="st">"rainfall"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Use default for end data (current system date) to get rainfall</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu">get_dpird_summaries</span><span class="op">(</span></span></span>
+<span class="r-in"><span>   station_code <span class="op">=</span> <span class="st">"CL001"</span>,</span></span>
+<span class="r-in"><span>   start_date <span class="op">=</span> <span class="st">"20171028"</span>,</span></span>
+<span class="r-in"><span>   api_key <span class="op">=</span> <span class="st">"YOUR API KEY"</span>,</span></span>
+<span class="r-in"><span>   interval <span class="op">=</span> <span class="st">"yearly"</span>,</span></span>
+<span class="r-in"><span>   which_values <span class="op">=</span> <span class="st">"rainfall"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Only for wind and erosion conditions for daily time interval</span></span></span>
-<span class="r-in"><span><span class="co"># define start and end date</span></span></span>
-<span class="r-in"><span><span class="va">start_date</span> <span class="op">&lt;-</span> <span class="st">"20220501"</span></span></span>
-<span class="r-in"><span><span class="va">end_date</span> <span class="op">&lt;-</span> <span class="st">"20220502"</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">get_dpird_summaries</span><span class="op">(</span></span></span>
-<span class="r-in"><span>            station_code <span class="op">=</span> <span class="st">"BI"</span>,</span></span>
-<span class="r-in"><span>            start_date <span class="op">=</span> <span class="va">start_date</span>,</span></span>
-<span class="r-in"><span>            end_date <span class="op">=</span> <span class="va">end_date</span>,</span></span>
-<span class="r-in"><span>            api_key <span class="op">=</span> <span class="st">"YOUR API KEY"</span>,</span></span>
-<span class="r-in"><span>            interval <span class="op">=</span> <span class="st">"daily"</span>,</span></span>
-<span class="r-in"><span>            which_values <span class="op">=</span> <span class="st">"wind"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu">get_dpird_summaries</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  station_code <span class="op">=</span> <span class="st">"BI"</span>,</span></span>
+<span class="r-in"><span>  start_date <span class="op">=</span> <span class="st">"20220501"</span>,</span></span>
+<span class="r-in"><span>  end_date <span class="op">=</span> <span class="st">"20220502"</span>,</span></span>
+<span class="r-in"><span>  api_key <span class="op">=</span> <span class="st">"your_key"</span>,</span></span>
+<span class="r-in"><span>  interval <span class="op">=</span> <span class="st">"daily"</span>,</span></span>
+<span class="r-in"><span>  which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"wind"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"erosionCondition"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"erosionConditionMinutes"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"erosionConditionStartTime"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

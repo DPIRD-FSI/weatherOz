@@ -132,7 +132,7 @@ is not provided.</p></dd>
 weather variables in alphabetical order. The first eight columns will
 always be:</p><ul><li><p>longitude,</p></li>
 <li><p>latitude,</p></li>
-<li><p>elev_m,</p></li>
+<li><p>elev_m (elevation in metres),</p></li>
 <li><p>date (ISO8601 format, "YYYYMMDD"),</p></li>
 <li><p>year,</p></li>
 <li><p>month,</p></li>
@@ -266,15 +266,18 @@ and Software</em>, Volume 16/4, 309-330. DOI:
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#' # Source data from latitude and longitude coordinates (gridded data)</span></span></span>
-<span class="r-in"><span><span class="co"># Southwood, QLD.</span></span></span>
-<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu">get_silo</span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span></span>
-<span class="r-in"><span>               longitude <span class="op">=</span> <span class="fl">150.05</span>,</span></span>
-<span class="r-in"><span>               start_date <span class="op">=</span> <span class="st">"2022-10-01"</span>,</span></span>
-<span class="r-in"><span>               end_date <span class="op">=</span> <span class="st">"2022-12-01"</span>,</span></span>
-<span class="r-in"><span>               api_key <span class="op">=</span> <span class="st">"your@email"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># requires an API key as your email address</span></span></span>
+<span class="r-in"><span><span class="co"># Source data from latitude and longitude coordinates (gridded data) for</span></span></span>
+<span class="r-in"><span><span class="co"># max and minimum temperature and rainfall for Southwood, QLD.</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu">get_data_drill</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span></span>
+<span class="r-in"><span>  longitude <span class="op">=</span> <span class="fl">150.05</span>,</span></span>
+<span class="r-in"><span>  start_date <span class="op">=</span> <span class="st">"20221001"</span>,</span></span>
+<span class="r-in"><span>  end_date <span class="op">=</span> <span class="st">"20221201"</span>,</span></span>
+<span class="r-in"><span>  which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"max_temp"</span>, <span class="st">"min_temp"</span>, <span class="st">"rain"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  api_key <span class="op">=</span> <span class="st">"your@email"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

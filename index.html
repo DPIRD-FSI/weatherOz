@@ -122,31 +122,35 @@
 <div class="section level2">
 <h2 id="example-1">Example 1<a class="anchor" aria-label="anchor" href="#example-1"></a>
 </h2>
-<p>Source wind and erosion conditions for daily time interval from the DPIRD Weather API.</p>
+<p>Source hourly wind and erosion conditions for daily time interval from the DPIRD Weather 2.0 API.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># define start and end date</span></span>
-<span><span class="va">start_date</span> <span class="op">&lt;-</span> <span class="st">"2022-05-01"</span></span>
-<span><span class="va">end_date</span> <span class="op">&lt;-</span> <span class="st">"2022-05-02"</span></span>
-<span></span>
-<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_dpird_summaries.html">get_dpird_summaries</a></span><span class="op">(</span></span>
-<span>            site <span class="op">=</span> <span class="st">"BI"</span>,</span>
-<span>            first <span class="op">=</span> <span class="va">start_date</span>,</span>
-<span>            last <span class="op">=</span> <span class="va">end_date</span>,</span>
-<span>            api_key <span class="op">=</span> <span class="va">mykey</span>,</span>
-<span>            interval <span class="op">=</span> <span class="st">"hourly"</span>,</span>
-<span>            which_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wind"</span>, <span class="st">"erosion"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_dpird_summaries.html">get_dpird_summaries</a></span><span class="op">(</span></span>
+<span>  station_code <span class="op">=</span> <span class="st">"BI"</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="st">"20220501"</span>,</span>
+<span>  end_date <span class="op">=</span> <span class="st">"20220502"</span>,</span>
+<span>  api_key <span class="op">=</span> <span class="st">"your_key"</span>,</span>
+<span>  interval <span class="op">=</span> <span class="st">"daily"</span>,</span>
+<span>  which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"wind"</span>,</span>
+<span>    <span class="st">"erosionCondition"</span>,</span>
+<span>    <span class="st">"erosionConditionMinutes"</span>,</span>
+<span>    <span class="st">"erosionConditionStartTime"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-2">Example 2<a class="anchor" aria-label="anchor" href="#example-2"></a>
 </h2>
-<p>Source data from latitude and longitude coordinates (gridded data - SILO API) Southwood, QLD in the ‘apsim’ format.</p>
+<p>Source data from latitude and longitude coordinates (gridded data - SILO API) Southwood, QLD for max and min temperature and rainfall.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu">get_silo</span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span>
-<span>               longitude <span class="op">=</span> <span class="fl">150.05</span>,</span>
-<span>               first <span class="op">=</span> <span class="st">"20221001"</span>,</span>
-<span>               last <span class="op">=</span> <span class="st">"20221201"</span>,</span>
-<span>               data_format <span class="op">=</span> <span class="st">"apsim"</span>,</span>
-<span>               email <span class="op">=</span> <span class="st">"your@email"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_data_drill.html">get_data_drill</a></span><span class="op">(</span></span>
+<span>    latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span>
+<span>    longitude <span class="op">=</span> <span class="fl">150.05</span>,</span>
+<span>    start_date <span class="op">=</span> <span class="st">"20221001"</span>,</span>
+<span>    end_date <span class="op">=</span> <span class="st">"20221201"</span>,</span>
+<span>    which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"max_temp"</span>, <span class="st">"min_temp"</span>, <span class="st">"rain"</span><span class="op">)</span>,</span>
+<span>    api_key <span class="op">=</span> <span class="st">"your@email"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="notes-on-data-and-api-endpoints">Notes on Data and API Endpoints<a class="anchor" aria-label="anchor" href="#notes-on-data-and-api-endpoints"></a>
