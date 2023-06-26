@@ -64,13 +64,13 @@
     <loc>/reference/get_dpird_availability.html</loc>
   </url>
   <url>
+    <loc>/reference/get_dpird_extremes.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_dpird_minute.html</loc>
   </url>
   <url>
     <loc>/reference/get_dpird_summaries.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_extreme_weather.html</loc>
   </url>
   <url>
     <loc>/reference/get_patched_point.html</loc>
@@ -103,7 +103,7 @@
     <loc>/reference/plot-SpatRaster-ANY-method.html</loc>
   </url>
   <url>
-    <loc>/reference/update_forecast_towns.html</loc>
+    <loc>/reference/silo_daily_values.html</loc>
   </url>
   <url>
     <loc>/reference/weatherOz-package.html</loc>

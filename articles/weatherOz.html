@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">weatherOz</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@ information pertaining to satellite and radar imagery,
 <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code>
 for radar images. The last group functions provides internal
 functionality for {weatherOz} itself;
-<code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code>, which updates an internal database
+<code>update_forecast_towns()</code>, which updates an internal database
 of forecast locations distributed with the package,
 <code>update_ag_station_locations()</code>, which updates an internal
 database of the stations reporting ag bulletins and
@@ -431,7 +431,7 @@ and installed {weatherOz} there, in which case it would still be in
 <div class="section level3">
 <h3 id="using-update_forecast_towns">Using update_forecast_towns()<a class="anchor" aria-label="anchor" href="#using-update_forecast_towns"></a>
 </h3>
-<p><code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code> downloads the latest précis
+<p><code>update_forecast_towns()</code> downloads the latest précis
 forecast locations from the BOM server and updates {weatherOz}’s
 internal database of towns used for forecast locations. This database is
 distributed with the package to make the process faster when fetching
@@ -443,7 +443,7 @@ the forecast.</p>
 <p>Following is an example updating the précis forecast locations
 internal database.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">update_forecast_towns</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-update_station_locations">Using update_station_locations<a class="anchor" aria-label="anchor" href="#using-update_station_locations"></a>
@@ -798,7 +798,7 @@ files first. Defaults to 1. This argument is optional.</p></li>
 <p><code><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">terra::plot()</a></code> has been re-exported to simplify
 visualising these files while using {weatherOz}.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_satellite-1.png" alt="plot of chunk plot_satellite" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -867,7 +867,7 @@ specified and the function will accept only one at a time.</li>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDR032"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; file downloaded to:/var/folders/ch/8fqkzddj1kj_qb5ddfdd3p1w0000gn/T//Rtmp47TcBG/file33021cd79c7.png</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <p><img src="get_radar_imagery-1.png" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -1729,7 +1729,7 @@ Additional marine forecast warning information (not always provided)
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
+<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">

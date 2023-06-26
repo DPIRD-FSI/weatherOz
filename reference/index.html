@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">weatherOz</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -60,107 +60,133 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="data-fetching">Data Fetching <a href="#data-fetching" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="bom">BOM <a href="#bom" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Functions that fetch BOM Data from the FTP server.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="get_ag_bulletin.html">get_ag_bulletin()</a></code> </p>
+        </td>
+        <td><p>Get a BOM Agriculture Bulletin</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_coastal_forecast.html">get_coastal_forecast()</a></code> </p>
+        </td>
+        <td><p>Get a BOM Coastal Waters Forecast</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_precis_forecast.html">get_precis_forecast()</a></code> </p>
+        </td>
+        <td><p>Get a BOM Daily Précis Forecast</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_radar_imagery.html">get_radar_imagery()</a></code> </p>
+        </td>
+        <td><p>Get BOM Radar Imagery</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_satellite_imagery.html">get_satellite_imagery()</a></code> </p>
+        </td>
+        <td><p>Get BOM Satellite Imagery</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="dpird">DPIRD <a href="#dpird" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Functions that fetch data from the DPIRD Weather 2.0 API.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="get_dpird_extremes.html">get_dpird_extremes()</a></code> </p>
+        </td>
+        <td><p>Get DPIRD Extreme Weather Event Summaries</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_dpird_minute.html">get_dpird_minute()</a></code> </p>
+        </td>
+        <td><p>Get DPIRD Weather Data by the Minute</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_dpird_summaries.html">get_dpird_summaries()</a></code> </p>
+        </td>
+        <td><p>Get DPIRD Weather Data in Summarised Formats</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="silo">SILO <a href="#silo" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Functions that fetch data from the SILO API.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="get_data_drill.html">get_data_drill()</a></code> </p>
+        </td>
+        <td><p>Get DataDrill Weather Data from SILO</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_patched_point.html">get_patched_point()</a></code> </p>
+        </td>
+        <td><p>Get PatchedPoint Weather Data from SILO</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="metadata-fetching">Metadata Fetching <a href="#metadata-fetching" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Functions that get metadata, <em>.e.g.</em>, station uptime, dataset availability, nearby stations or forecast locations, values that the station records, etc.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="find_forecast_towns.html">find_forecast_towns()</a></code> </p>
+        </td>
+        <td><p>Find the Nearest Town with a BOM Forecast</p></td>
+      </tr><tr><td>
+          <p><code><a href="find_nearby_stations.html">find_nearby_stations()</a></code> </p>
+        </td>
+        <td><p>Find the Nearest Weather Stations to a Given Geographic Point or Known Station</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_available_imagery.html">get_available_imagery()</a></code> </p>
+        </td>
+        <td><p>Get a List of Available BOM Satellite Imagery</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_available_radar.html">get_available_radar()</a></code> </p>
+        </td>
+        <td><p>Get a List of Available BOM Radar Imagery</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_dpird_availability.html">get_dpird_availability()</a></code> </p>
+        </td>
+        <td><p>Get the Availability for DPIRD Weather Stations</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_station_metadata.html">get_station_metadata()</a></code> </p>
+        </td>
+        <td><p>Get Weather Station Metadata for Both DPIRD and SILO Weather Stations</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="file-parsing">File Parsing <a href="#file-parsing" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Functions that parse files that you already downloaded to your computer.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="parse_ag_bulletin.html">parse_ag_bulletin()</a></code> </p>
+        </td>
+        <td><p>Parse BOM Agriculture Bulletin XML Files</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_coastal_forecast.html">parse_coastal_forecast()</a></code> </p>
+        </td>
+        <td><p>Parse BOM Coastal Waters Forecast XML Files</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_precis_forecast.html">parse_precis_forecast()</a></code> </p>
+        </td>
+        <td><p>Parse BOM Précis Forecast XML Files</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="built-in-datasets">Built in Datasets <a href="#built-in-datasets" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Datasets included in {WeatherOz}.</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dpird_extreme_weather_values.html">dpird_extreme_weather_values</a></code> </p>
         </td>
-        <td><p>Extreme weather data values available from the DPIRD Weather 2.0 'API'</p></td>
+        <td><p>A List of DPIRD Extreme Weather Data Values</p></td>
       </tr><tr><td>
           <p><code><a href="dpird_minute_values.html">dpird_minute_values</a></code> </p>
         </td>
-        <td><p>Minute weather data values available from the DPIRD Weather 2.0 'API'</p></td>
+        <td><p>A List of DPIRD Minute Weather Data Values</p></td>
       </tr><tr><td>
           <p><code><a href="dpird_summary_values.html">dpird_summary_values</a></code> </p>
         </td>
-        <td><p>Summary weather data values available from the DPIRD Weather 2.0 'API'</p></td>
+        <td><p>A List of DPIRD Summary Weather Data Values</p></td>
       </tr><tr><td>
-          <p><code><a href="find_forecast_towns.html">find_forecast_towns()</a></code> </p>
+          <p><code><a href="silo_daily_values.html">silo_daily_values</a></code> </p>
         </td>
-        <td><p>Find nearest BOM forecast towns for a given location by latitude and longitude</p></td>
-      </tr><tr><td>
-          <p><code><a href="find_nearby_stations.html">find_nearby_stations()</a></code> </p>
-        </td>
-        <td><p>Find nearby weather stations given geographic coordinates or a station code.
-Either a combination of <code>latitude</code> and <code>longitude</code> or <code>station_code</code> must
-be provided as a starting point.</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_ag_bulletin.html">get_ag_bulletin()</a></code> </p>
-        </td>
-        <td><p>Get BOM agriculture bulletin information for select stations</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_available_imagery.html">get_available_imagery()</a></code> </p>
-        </td>
-        <td><p>Get a listing of available BOM satellite GeoTIFF imagery</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_available_radar.html">get_available_radar()</a></code> </p>
-        </td>
-        <td><p>Get a listing of available BOM radar imagery</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_coastal_forecast.html">get_coastal_forecast()</a></code> </p>
-        </td>
-        <td><p>Get BOM coastal waters forecast</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_data_drill.html">get_data_drill()</a></code> </p>
-        </td>
-        <td><p>Get DataDrill weather data from the SILO API</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_dpird_availability.html">get_dpird_availability()</a></code> </p>
-        </td>
-        <td><p>Get DPIRD weather station availability metadata</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_dpird_minute.html">get_dpird_minute()</a></code> </p>
-        </td>
-        <td><p>Get minute weather data from DPIRD Weather 2.0 API</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_dpird_summaries.html">get_dpird_summaries()</a></code> </p>
-        </td>
-        <td><p>Get weather data from DPIRD Weather 2.0 API summarised by time interval</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_extreme_weather.html">get_extreme_weather()</a></code> </p>
-        </td>
-        <td><p>Get extreme weather event summaries for a single DPIRD station</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_patched_point.html">get_patched_point()</a></code> </p>
-        </td>
-        <td><p>Get PatchedPoint weather data from the SILO API</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_precis_forecast.html">get_precis_forecast()</a></code> </p>
-        </td>
-        <td><p>Get BOM daily précis forecast for select towns from BOM</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_radar_imagery.html">get_radar_imagery()</a></code> </p>
-        </td>
-        <td><p>Get <acronym>BOM</acronym> radar imagery</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_satellite_imagery.html">get_satellite_imagery()</a></code> </p>
-        </td>
-        <td><p>Get <acronym>BOM</acronym> Satellite GeoTIFF Imagery</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_station_metadata.html">get_station_metadata()</a></code> </p>
-        </td>
-        <td><p>Get the latest DPIRD and SILO weather station metadata</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_ag_bulletin.html">parse_ag_bulletin()</a></code> </p>
-        </td>
-        <td><p>Parse local BOM agriculture bulletin XML file(s) for select stations</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_coastal_forecast.html">parse_coastal_forecast()</a></code> </p>
-        </td>
-        <td><p>Parse local BOM coastal waters forecast XML files</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_precis_forecast.html">parse_precis_forecast()</a></code> </p>
-        </td>
-        <td><p>Parse local BOM daily précis forecast XML file(s) for select towns</p></td>
-      </tr><tr><td>
+        <td><p>A List of SILO Daily Weather Values</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="plotting">Plotting <a href="#plotting" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Functions for plotting data from {weatherOz}.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="plot-SpatRaster-ANY-method.html">plot(<i>&lt;SpatRaster&gt;</i>,<i>&lt;ANY&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Plot a terra SpatRaster object</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_forecast_towns.html">update_forecast_towns()</a></code> </p>
-        </td>
-        <td><p>Update internal database with latest BOM forecast towns</p></td>
+        <td><p>Make a Map of BOM Satellite Data</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -170,7 +196,7 @@ be provided as a starting point.</p></td>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
+  <p></p><p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">

@@ -54,7 +54,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">weatherOz</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -106,18 +106,19 @@
 <div class="section level1">
 <div class="page-header"><h1 id="weatheroz-an-api-client-for-australian-weather-and-climate-data-resources">{weatherOz}: An API Client for Australian Weather and Climate Data Resources<a class="anchor" aria-label="anchor" href="#weatheroz-an-api-client-for-australian-weather-and-climate-data-resources"></a>
 </h1></div>
-<p>{weatherOz} aims to facilitate access and download of a range of weather and climate data for Australia. Data are sourced from from the Western Australian Department of Primary Industries and Regional Development (DPIRD) and the Scientific Information for Land Owners (SILO) API endpoints and the Australian Government Bureau of Meteorology (BOM). The package queries the APIs and returns data as a data frame or radar and satellite imagery in your R session. Observation data from the DPIRD’s weather station network are available via the <a href="https://www.agric.wa.gov.au/science-api-20" class="external-link">Science</a> and <a href="https://www.agric.wa.gov.au/weather-api-20" class="external-link">Weather</a> APIs. SILO data is obtained from the Long Paddock initiative (Jeffery et al. 2001) and are spatially and temporally complete, covering all Australia and few nearby islands (112°E to 154°E, 10°S to 44°S), with resolution 0.05° longitude by 0.05° latitude (approximately 5 km × 5 km). Visit the <a href="https://siloapi.longpaddock.qld.gov.au/silo/" class="external-link">SILO website</a> for more details about how the data is prepared and which climate data are available.</p>
+<p>{weatherOz} aims to facilitate access and download of a range of weather and climate data for Australia. Data are sourced from from the Western Australian Department of Primary Industries and Regional Development (DPIRD) and the Scientific Information for Land Owners (SILO) API endpoints and the Australian Government Bureau of Meteorology’s (BOM) FTP server.</p>
+<p>The package queries the APIs or an FTP server and returns data as a data frame or radar and satellite imagery in your R session. Observation data from the DPIRD’s weather station network are available via the <a href="https://www.agric.wa.gov.au/science-api-20" class="external-link">Science</a> and <a href="https://www.agric.wa.gov.au/weather-api-20" class="external-link">Weather</a> APIs. SILO data is obtained from the Long Paddock initiative (Jeffery et al. 2001) and are spatially and temporally complete, covering all Australia and few nearby islands (112°E to 154°E, 10°S to 44°S), with resolution 0.05° longitude by 0.05° latitude (approximately 5 km × 5 km). Visit the <a href="https://siloapi.longpaddock.qld.gov.au/silo/" class="external-link">SILO website</a> for more details about how the data is prepared and which climate data are available.</p>
 <p>Access to DPIRD API requires an API key. Apply for an API key by submitting the <a href="https://www.agric.wa.gov.au/form/dpird-api-registration" class="external-link">DPIRD API registration form</a>. Access to the SILO API is conditioned to supplying a valid email address with the user query. Follow the API Terms and Conditions for the <a href="https://www.agric.wa.gov.au/apis/api-terms-and-conditions" class="external-link">DPIRD</a> and <a href="https://siloapi.longpaddock.qld.gov.au/silo/about/access-data/" class="external-link">SILO</a> APIs.</p>
-<p>Observation data from the DPIRD’s weather station network is also available via a <a href="https://weather.agric.wa.gov.au" class="external-link">web interface</a>. The data available is a mirror of the DPIRD Weather API endpoints. Rainfall estimates are also available at virtual stations (<em>i.e.</em>, where no observational data is present) and is sourced from the Doppler radar service provided by the Bureau of Meteorology under license.</p>
+<p>Observation data from the DPIRD’s weather station network is also available via a <a href="https://weather.agric.wa.gov.au" class="external-link">web interface</a>. The data available is a mirror of the DPIRD Weather 2.0 API endpoints. Rainfall estimates are also available at virtual stations (<em>i.e.</em>, where no observational data is present) and is sourced from the Doppler radar service provided by the Bureau of Meteorology under license.</p>
 <div class="section level2">
 <h2 id="installation-instructions">Installation instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
 </h2>
 <p>You can install the development version of {weatherOz} like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pak"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DPIRD-FSI/weatherOz"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"DPIRD-FSI/weatherOz"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-1">Example 1<a class="anchor" aria-label="anchor" href="#example-1"></a>
@@ -130,7 +131,7 @@
 <span>  end_date <span class="op">=</span> <span class="st">"20220502"</span>,</span>
 <span>  api_key <span class="op">=</span> <span class="st">"your_key"</span>,</span>
 <span>  interval <span class="op">=</span> <span class="st">"daily"</span>,</span>
-<span>  which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"wind"</span>,</span>
 <span>    <span class="st">"erosionCondition"</span>,</span>
 <span>    <span class="st">"erosionConditionMinutes"</span>,</span>
@@ -144,12 +145,15 @@
 <p>Source data from latitude and longitude coordinates (gridded data - SILO API) Southwood, QLD for max and min temperature and rainfall.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_data_drill.html">get_data_drill</a></span><span class="op">(</span></span>
-<span>    latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span>
-<span>    longitude <span class="op">=</span> <span class="fl">150.05</span>,</span>
-<span>    start_date <span class="op">=</span> <span class="st">"20221001"</span>,</span>
-<span>    end_date <span class="op">=</span> <span class="st">"20221201"</span>,</span>
-<span>    which_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"max_temp"</span>, <span class="st">"min_temp"</span>, <span class="st">"rain"</span><span class="op">)</span>,</span>
-<span>    api_key <span class="op">=</span> <span class="st">"your@email"</span></span>
+<span>  latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.85</span>,</span>
+<span>  longitude <span class="op">=</span> <span class="fl">150.05</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="st">"20221001"</span>,</span>
+<span>  end_date <span class="op">=</span> <span class="st">"20221201"</span>,</span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"max_temp"</span>,</span>
+<span>                   <span class="st">"min_temp"</span>,</span>
+<span>                   <span class="st">"rain"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  api_key <span class="op">=</span> <span class="st">"your@email"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -166,7 +170,7 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the weatherOz project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the {weatherOz} project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
 
@@ -217,6 +221,7 @@
 <li>Mark Padgham <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2172-5265" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Hugh Parsonage <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-4055-0835" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Keith Pembleton <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1896-4516" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jimmy Ng <br><small class="roles"> Author </small>  </li>
 <li>Adam H. Sparks <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0061-8359" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
@@ -230,7 +235,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
+<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">
