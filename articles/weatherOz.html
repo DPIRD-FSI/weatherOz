@@ -97,10 +97,10 @@ Melloy, Mark Padgham and Hugh Parsonage and Adam H. Sparks</h4>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>{weatherOz} provides automated downloading, parsing, cleaning, and
-formatting of weather data for Australia through API endpoints provided
-by the Department of Primary Industries and Regional Development (DPIRD)
-of Western Australia, and by the Science and Technology Division of the
+<p>{weatherOz} provides automated downloading, parsing, and formatting
+of weather data for Australia through API endpoints provided by the
+Department of Primary Industries and Regional Development (DPIRD) of
+Western Australia, and by the Science and Technology Division of the
 Queensland Government’s Department of Environment and Science (DES). As
 well as Australian Government Bureau of Meteorology (‘BOM’) précis and
 coastal forecasts, agriculture bulletin data, and downloading and
@@ -181,7 +181,7 @@ See Appendix 1 for a full description of the fields and values.</p>
 <span><span class="co">#&gt;   Please note information at the page </span></span>
 <span><span class="co">#&gt;   &lt;http://www.bom.gov.au/catalogue/data-feeds.shtml#precis&gt;</span></span>
 <span><span class="co">#&gt;   --------------------------------------------------------------------------------  </span></span>
-<span><span class="co">#&gt; data.table [791, 19]</span></span>
+<span><span class="co">#&gt; data.table [904, 19]</span></span>
 <span><span class="co">#&gt; index                        fct  0 1 2 3 4 5</span></span>
 <span><span class="co">#&gt; product_id                   chr  IDQ11295 IDQ11295 IDQ1129~</span></span>
 <span><span class="co">#&gt; state                        chr  QLD QLD QLD QLD QLD QLD</span></span>
@@ -190,17 +190,17 @@ See Appendix 1 for a full description of the fields and values.</p>
 <span><span class="co">#&gt; lat                          dbl  -27.4808 -27.4808 -27.480~</span></span>
 <span><span class="co">#&gt; lon                          dbl  153.0389 153.0389 153.038~</span></span>
 <span><span class="co">#&gt; elev                         dbl  8.1 8.1 8.1 8.1 8.1 8.1</span></span>
-<span><span class="co">#&gt; start_time_local             dttm 2023-05-04 09:18:25 2023-~</span></span>
-<span><span class="co">#&gt; end_time_local               dttm 2023-05-05 2023-05-06 202~</span></span>
+<span><span class="co">#&gt; start_time_local             dttm 2023-06-26 17:00:00 2023-~</span></span>
+<span><span class="co">#&gt; end_time_local               dttm 2023-06-27 2023-06-28 202~</span></span>
 <span><span class="co">#&gt; utc_offset                   fct  10:00 10:00 10:00 10:00 1~</span></span>
-<span><span class="co">#&gt; start_time_utc               dttm 2023-05-03 23:18:25 2023-~</span></span>
-<span><span class="co">#&gt; end_time_utc                 dttm 2023-05-04 14:00:00 2023-~</span></span>
-<span><span class="co">#&gt; minimum_temperature          dbl  NA 15 13 14 11 8</span></span>
-<span><span class="co">#&gt; maximum_temperature          dbl  27 25 26 26 22 23</span></span>
+<span><span class="co">#&gt; start_time_utc               dttm 2023-06-26 07:00:00 2023-~</span></span>
+<span><span class="co">#&gt; end_time_utc                 dttm 2023-06-26 14:00:00 2023-~</span></span>
+<span><span class="co">#&gt; minimum_temperature          dbl  NA 9 10 15 9 8</span></span>
+<span><span class="co">#&gt; maximum_temperature          dbl  NA 22 24 23 22 21</span></span>
 <span><span class="co">#&gt; lower_precipitation_limit    dbl  NA NA NA NA NA NA</span></span>
 <span><span class="co">#&gt; upper_precipitation_limit    dbl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; precis                       chr  Sunny. Mostly sunny. Most~</span></span>
-<span><span class="co">#&gt; probability_of_precipitation dbl  0 5 5 10 5 5</span></span></code></pre></div>
+<span><span class="co">#&gt; precis                       chr  Clear. Sunny. Partly clou~</span></span>
+<span><span class="co">#&gt; probability_of_precipitation dbl  0 0 0 5 0 0</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -247,23 +247,23 @@ for a full list and description of the fields and values.</p>
 <span><span class="co">#&gt; state          chr  QLD QLD QLD QLD QLD QLD</span></span>
 <span><span class="co">#&gt; station        chr  Ayr Birdsville Brisbane Airport Bundabe~</span></span>
 <span><span class="co">#&gt; site           fct  33002 38026 40842 39128 31011 44021</span></span>
-<span><span class="co">#&gt; obs_time_local dttm 2023-05-04 09:00:00 2023-05-04 09:00:00~</span></span>
-<span><span class="co">#&gt; obs_time_utc   dttm 2023-05-03 23:00:00 2023-05-03 23:00:00~</span></span>
+<span><span class="co">#&gt; obs_time_local dttm 2023-06-26 09:00:00 2023-06-26 09:00:00~</span></span>
+<span><span class="co">#&gt; obs_time_utc   dttm 2023-06-25 23:00:00 2023-06-25 23:00:00~</span></span>
 <span><span class="co">#&gt; time_zone      chr  EST EST EST EST EST EST</span></span>
-<span><span class="co">#&gt; r              dbl  0 0 0 0 0.8 0</span></span>
-<span><span class="co">#&gt; tn             dbl  18.2 11.3 10.2 10.4 23.6 7</span></span>
-<span><span class="co">#&gt; tx             dbl  29.7 26.7 25.9 25.9 29.7 26</span></span>
-<span><span class="co">#&gt; twd            dbl  NA 5.5 4.6 5.2 4.1 6.2</span></span>
-<span><span class="co">#&gt; ev             dbl  NA NA 4 NA NA NA</span></span>
-<span><span class="co">#&gt; tg             dbl  NA NA 5.7 NA NA NA</span></span>
-<span><span class="co">#&gt; sn             dbl  NA NA 10.2 NA NA NA</span></span>
-<span><span class="co">#&gt; solr           dbl  19.4 17.7 16.9 17.3 14 17.3</span></span>
-<span><span class="co">#&gt; t5             dbl  NA NA NA 19.9 NA NA</span></span>
-<span><span class="co">#&gt; t10            dbl  NA NA NA 20.6 NA NA</span></span>
-<span><span class="co">#&gt; t20            dbl  NA NA NA 21.8 NA NA</span></span>
-<span><span class="co">#&gt; t50            dbl  NA NA NA 21.1 NA NA</span></span>
+<span><span class="co">#&gt; r              dbl  0 0 0 0 0 0</span></span>
+<span><span class="co">#&gt; tn             dbl  16.5 11.4 13.4 15.9 20 6.5</span></span>
+<span><span class="co">#&gt; tx             dbl  28.1 21.9 23.2 26.8 29.1 24.8</span></span>
+<span><span class="co">#&gt; twd            dbl  NA 6.8 9.8 0.1 4.3 7.2</span></span>
+<span><span class="co">#&gt; ev             dbl  NA NA 3.8 NA NA NA</span></span>
+<span><span class="co">#&gt; tg             dbl  NA NA 7.3 NA NA NA</span></span>
+<span><span class="co">#&gt; sn             dbl  NA NA 9.9 NA NA NA</span></span>
+<span><span class="co">#&gt; solr           dbl  16.7 14.1 13.9 14.8 16.2 14.4</span></span>
+<span><span class="co">#&gt; t5             dbl  NA NA NA 19.4 NA NA</span></span>
+<span><span class="co">#&gt; t10            dbl  NA NA NA 19.8 NA NA</span></span>
+<span><span class="co">#&gt; t20            dbl  NA NA NA 20.5 NA NA</span></span>
+<span><span class="co">#&gt; t50            dbl  NA NA NA 20 NA NA</span></span>
 <span><span class="co">#&gt; t1m            dbl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; wr             dbl  NA NA 132 NA NA NA</span></span></code></pre></div>
+<span><span class="co">#&gt; wr             dbl  NA NA 148 NA NA NA</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -307,7 +307,7 @@ Appendix 6 for a full description of the fields and values.</p>
 <span><span class="co">#&gt;   Also see </span></span>
 <span><span class="co">#&gt;   &lt;http://www.bom.gov.au/catalogue/observations/about-coastal-observations.shtml&gt;.</span></span>
 <span><span class="co">#&gt;   --------------------------------------------------------------------------------  </span></span>
-<span><span class="co">#&gt; data.table [49, 22]</span></span>
+<span><span class="co">#&gt; data.table [64, 22]</span></span>
 <span><span class="co">#&gt; index                    fct  NA NA NA NA 0 1</span></span>
 <span><span class="co">#&gt; product_id               chr  IDQ11290 IDQ11290 IDQ11290 ID~</span></span>
 <span><span class="co">#&gt; type                     chr  NA NA NA NA NA NA</span></span>
@@ -316,15 +316,15 @@ Appendix 6 for a full description of the fields and values.</p>
 <span><span class="co">#&gt; pt_1_name                chr  NA NA NA NA NA NA</span></span>
 <span><span class="co">#&gt; pt_2_name                chr  NA NA NA NA NA NA</span></span>
 <span><span class="co">#&gt; aac                      chr  QLD_FA001 QLD_FA002 QLD_FA003~</span></span>
-<span><span class="co">#&gt; start_time_local         dttm 2023-05-04 10:00:27 2023-05-0~</span></span>
-<span><span class="co">#&gt; end_time_local           dttm 2023-05-04 10:00:27 2023-05-0~</span></span>
+<span><span class="co">#&gt; start_time_local         dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
+<span><span class="co">#&gt; end_time_local           dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
 <span><span class="co">#&gt; utc_offset               fct  10:00 10:00 10:00 10:00 10:00~</span></span>
-<span><span class="co">#&gt; start_time_utc           dttm 2023-05-04 10:00:27 2023-05-0~</span></span>
-<span><span class="co">#&gt; end_time_utc             dttm 2023-05-04 10:00:27 2023-05-0~</span></span>
-<span><span class="co">#&gt; forecast_seas            chr  NA NA NA NA 1 to 1.5 metres, ~</span></span>
-<span><span class="co">#&gt; forecast_weather         chr  NA NA NA NA Mostly sunny. Sun~</span></span>
-<span><span class="co">#&gt; forecast_winds           chr  NA NA NA NA East to southeast~</span></span>
-<span><span class="co">#&gt; forecast_swell1          chr  NA NA NA NA Below 0.5 metres.~</span></span>
+<span><span class="co">#&gt; start_time_utc           dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
+<span><span class="co">#&gt; end_time_utc             dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
+<span><span class="co">#&gt; forecast_seas            chr  NA NA NA NA Below 1 metre, in~</span></span>
+<span><span class="co">#&gt; forecast_weather         chr  NA NA NA NA Clear. Partly clo~</span></span>
+<span><span class="co">#&gt; forecast_winds           chr  NA NA NA NA Northeast to sout~</span></span>
+<span><span class="co">#&gt; forecast_swell1          chr  NA NA NA NA NA Below 0.5 metr~</span></span>
 <span><span class="co">#&gt; forecast_swell2          chr  NA NA NA NA NA NA</span></span>
 <span><span class="co">#&gt; forecast_caution         chr  NA NA NA NA NA NA</span></span>
 <span><span class="co">#&gt; marine_forecast          chr  NA NA NA NA NA NA</span></span>
@@ -720,54 +720,75 @@ specify in the <code>_imagery()</code> function. If no valid Product ID
 is supplied, defaults to all GeoTIFF images currently available.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">avail</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDE00425"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   [1] "IDE00425.202305030010.tif" "IDE00425.202305030020.tif" "IDE00425.202305030030.tif"</span></span>
-<span><span class="co">#&gt;   [4] "IDE00425.202305030040.tif" "IDE00425.202305030050.tif" "IDE00425.202305030100.tif"</span></span>
-<span><span class="co">#&gt;   [7] "IDE00425.202305030110.tif" "IDE00425.202305030120.tif" "IDE00425.202305030130.tif"</span></span>
-<span><span class="co">#&gt;  [10] "IDE00425.202305030140.tif" "IDE00425.202305030150.tif" "IDE00425.202305030200.tif"</span></span>
-<span><span class="co">#&gt;  [13] "IDE00425.202305030210.tif" "IDE00425.202305030220.tif" "IDE00425.202305030230.tif"</span></span>
-<span><span class="co">#&gt;  [16] "IDE00425.202305030250.tif" "IDE00425.202305030300.tif" "IDE00425.202305030310.tif"</span></span>
-<span><span class="co">#&gt;  [19] "IDE00425.202305030320.tif" "IDE00425.202305030330.tif" "IDE00425.202305030340.tif"</span></span>
-<span><span class="co">#&gt;  [22] "IDE00425.202305030350.tif" "IDE00425.202305030400.tif" "IDE00425.202305030410.tif"</span></span>
-<span><span class="co">#&gt;  [25] "IDE00425.202305030420.tif" "IDE00425.202305030430.tif" "IDE00425.202305030440.tif"</span></span>
-<span><span class="co">#&gt;  [28] "IDE00425.202305030450.tif" "IDE00425.202305030500.tif" "IDE00425.202305030510.tif"</span></span>
-<span><span class="co">#&gt;  [31] "IDE00425.202305030520.tif" "IDE00425.202305030530.tif" "IDE00425.202305030540.tif"</span></span>
-<span><span class="co">#&gt;  [34] "IDE00425.202305030550.tif" "IDE00425.202305030600.tif" "IDE00425.202305030610.tif"</span></span>
-<span><span class="co">#&gt;  [37] "IDE00425.202305030620.tif" "IDE00425.202305030630.tif" "IDE00425.202305030640.tif"</span></span>
-<span><span class="co">#&gt;  [40] "IDE00425.202305030650.tif" "IDE00425.202305030700.tif" "IDE00425.202305030710.tif"</span></span>
-<span><span class="co">#&gt;  [43] "IDE00425.202305030720.tif" "IDE00425.202305030730.tif" "IDE00425.202305030740.tif"</span></span>
-<span><span class="co">#&gt;  [46] "IDE00425.202305030750.tif" "IDE00425.202305030800.tif" "IDE00425.202305030810.tif"</span></span>
-<span><span class="co">#&gt;  [49] "IDE00425.202305030820.tif" "IDE00425.202305030830.tif" "IDE00425.202305030840.tif"</span></span>
-<span><span class="co">#&gt;  [52] "IDE00425.202305030850.tif" "IDE00425.202305030900.tif" "IDE00425.202305030910.tif"</span></span>
-<span><span class="co">#&gt;  [55] "IDE00425.202305030920.tif" "IDE00425.202305030930.tif" "IDE00425.202305030940.tif"</span></span>
-<span><span class="co">#&gt;  [58] "IDE00425.202305030950.tif" "IDE00425.202305031000.tif" "IDE00425.202305031010.tif"</span></span>
-<span><span class="co">#&gt;  [61] "IDE00425.202305031020.tif" "IDE00425.202305031030.tif" "IDE00425.202305031040.tif"</span></span>
-<span><span class="co">#&gt;  [64] "IDE00425.202305031050.tif" "IDE00425.202305031100.tif" "IDE00425.202305031110.tif"</span></span>
-<span><span class="co">#&gt;  [67] "IDE00425.202305031120.tif" "IDE00425.202305031130.tif" "IDE00425.202305031140.tif"</span></span>
-<span><span class="co">#&gt;  [70] "IDE00425.202305031150.tif" "IDE00425.202305031200.tif" "IDE00425.202305031210.tif"</span></span>
-<span><span class="co">#&gt;  [73] "IDE00425.202305031220.tif" "IDE00425.202305031230.tif" "IDE00425.202305031240.tif"</span></span>
-<span><span class="co">#&gt;  [76] "IDE00425.202305031250.tif" "IDE00425.202305031300.tif" "IDE00425.202305031310.tif"</span></span>
-<span><span class="co">#&gt;  [79] "IDE00425.202305031320.tif" "IDE00425.202305031330.tif" "IDE00425.202305031340.tif"</span></span>
-<span><span class="co">#&gt;  [82] "IDE00425.202305031350.tif" "IDE00425.202305031400.tif" "IDE00425.202305031410.tif"</span></span>
-<span><span class="co">#&gt;  [85] "IDE00425.202305031420.tif" "IDE00425.202305031430.tif" "IDE00425.202305031450.tif"</span></span>
-<span><span class="co">#&gt;  [88] "IDE00425.202305031500.tif" "IDE00425.202305031510.tif" "IDE00425.202305031520.tif"</span></span>
-<span><span class="co">#&gt;  [91] "IDE00425.202305031530.tif" "IDE00425.202305031540.tif" "IDE00425.202305031550.tif"</span></span>
-<span><span class="co">#&gt;  [94] "IDE00425.202305031600.tif" "IDE00425.202305031610.tif" "IDE00425.202305031620.tif"</span></span>
-<span><span class="co">#&gt;  [97] "IDE00425.202305031630.tif" "IDE00425.202305031640.tif" "IDE00425.202305031650.tif"</span></span>
-<span><span class="co">#&gt; [100] "IDE00425.202305031700.tif" "IDE00425.202305031710.tif" "IDE00425.202305031720.tif"</span></span>
-<span><span class="co">#&gt; [103] "IDE00425.202305031730.tif" "IDE00425.202305031740.tif" "IDE00425.202305031750.tif"</span></span>
-<span><span class="co">#&gt; [106] "IDE00425.202305031800.tif" "IDE00425.202305031810.tif" "IDE00425.202305031820.tif"</span></span>
-<span><span class="co">#&gt; [109] "IDE00425.202305031830.tif" "IDE00425.202305031840.tif" "IDE00425.202305031850.tif"</span></span>
-<span><span class="co">#&gt; [112] "IDE00425.202305031900.tif" "IDE00425.202305031910.tif" "IDE00425.202305031920.tif"</span></span>
-<span><span class="co">#&gt; [115] "IDE00425.202305031930.tif" "IDE00425.202305031940.tif" "IDE00425.202305031950.tif"</span></span>
-<span><span class="co">#&gt; [118] "IDE00425.202305032000.tif" "IDE00425.202305032010.tif" "IDE00425.202305032020.tif"</span></span>
-<span><span class="co">#&gt; [121] "IDE00425.202305032030.tif" "IDE00425.202305032040.tif" "IDE00425.202305032050.tif"</span></span>
-<span><span class="co">#&gt; [124] "IDE00425.202305032100.tif" "IDE00425.202305032110.tif" "IDE00425.202305032120.tif"</span></span>
-<span><span class="co">#&gt; [127] "IDE00425.202305032130.tif" "IDE00425.202305032140.tif" "IDE00425.202305032150.tif"</span></span>
-<span><span class="co">#&gt; [130] "IDE00425.202305032200.tif" "IDE00425.202305032210.tif" "IDE00425.202305032220.tif"</span></span>
-<span><span class="co">#&gt; [133] "IDE00425.202305032230.tif" "IDE00425.202305032240.tif" "IDE00425.202305032250.tif"</span></span>
-<span><span class="co">#&gt; [136] "IDE00425.202305032300.tif" "IDE00425.202305032310.tif" "IDE00425.202305032320.tif"</span></span>
-<span><span class="co">#&gt; [139] "IDE00425.202305032330.tif" "IDE00425.202305032340.tif" "IDE00425.202305032350.tif"</span></span>
-<span><span class="co">#&gt; [142] "IDE00425.202305040000.tif" "IDE00425.202305040010.tif"</span></span></code></pre></div>
+<span><span class="co">#&gt;   [1] "IDE00425.202306250810.tif" "IDE00425.202306250820.tif"</span></span>
+<span><span class="co">#&gt;   [3] "IDE00425.202306250830.tif" "IDE00425.202306250840.tif"</span></span>
+<span><span class="co">#&gt;   [5] "IDE00425.202306250850.tif" "IDE00425.202306250900.tif"</span></span>
+<span><span class="co">#&gt;   [7] "IDE00425.202306250910.tif" "IDE00425.202306250920.tif"</span></span>
+<span><span class="co">#&gt;   [9] "IDE00425.202306250930.tif" "IDE00425.202306250940.tif"</span></span>
+<span><span class="co">#&gt;  [11] "IDE00425.202306250950.tif" "IDE00425.202306251000.tif"</span></span>
+<span><span class="co">#&gt;  [13] "IDE00425.202306251010.tif" "IDE00425.202306251020.tif"</span></span>
+<span><span class="co">#&gt;  [15] "IDE00425.202306251030.tif" "IDE00425.202306251040.tif"</span></span>
+<span><span class="co">#&gt;  [17] "IDE00425.202306251050.tif" "IDE00425.202306251100.tif"</span></span>
+<span><span class="co">#&gt;  [19] "IDE00425.202306251110.tif" "IDE00425.202306251120.tif"</span></span>
+<span><span class="co">#&gt;  [21] "IDE00425.202306251130.tif" "IDE00425.202306251140.tif"</span></span>
+<span><span class="co">#&gt;  [23] "IDE00425.202306251150.tif" "IDE00425.202306251200.tif"</span></span>
+<span><span class="co">#&gt;  [25] "IDE00425.202306251210.tif" "IDE00425.202306251220.tif"</span></span>
+<span><span class="co">#&gt;  [27] "IDE00425.202306251230.tif" "IDE00425.202306251240.tif"</span></span>
+<span><span class="co">#&gt;  [29] "IDE00425.202306251250.tif" "IDE00425.202306251300.tif"</span></span>
+<span><span class="co">#&gt;  [31] "IDE00425.202306251310.tif" "IDE00425.202306251320.tif"</span></span>
+<span><span class="co">#&gt;  [33] "IDE00425.202306251330.tif" "IDE00425.202306251340.tif"</span></span>
+<span><span class="co">#&gt;  [35] "IDE00425.202306251350.tif" "IDE00425.202306251400.tif"</span></span>
+<span><span class="co">#&gt;  [37] "IDE00425.202306251410.tif" "IDE00425.202306251420.tif"</span></span>
+<span><span class="co">#&gt;  [39] "IDE00425.202306251430.tif" "IDE00425.202306251450.tif"</span></span>
+<span><span class="co">#&gt;  [41] "IDE00425.202306251500.tif" "IDE00425.202306251510.tif"</span></span>
+<span><span class="co">#&gt;  [43] "IDE00425.202306251540.tif" "IDE00425.202306251550.tif"</span></span>
+<span><span class="co">#&gt;  [45] "IDE00425.202306251600.tif" "IDE00425.202306251610.tif"</span></span>
+<span><span class="co">#&gt;  [47] "IDE00425.202306251620.tif" "IDE00425.202306251630.tif"</span></span>
+<span><span class="co">#&gt;  [49] "IDE00425.202306251640.tif" "IDE00425.202306251650.tif"</span></span>
+<span><span class="co">#&gt;  [51] "IDE00425.202306251700.tif" "IDE00425.202306251710.tif"</span></span>
+<span><span class="co">#&gt;  [53] "IDE00425.202306251720.tif" "IDE00425.202306251730.tif"</span></span>
+<span><span class="co">#&gt;  [55] "IDE00425.202306251740.tif" "IDE00425.202306251750.tif"</span></span>
+<span><span class="co">#&gt;  [57] "IDE00425.202306251800.tif" "IDE00425.202306251810.tif"</span></span>
+<span><span class="co">#&gt;  [59] "IDE00425.202306251820.tif" "IDE00425.202306251830.tif"</span></span>
+<span><span class="co">#&gt;  [61] "IDE00425.202306251840.tif" "IDE00425.202306251850.tif"</span></span>
+<span><span class="co">#&gt;  [63] "IDE00425.202306251900.tif" "IDE00425.202306251910.tif"</span></span>
+<span><span class="co">#&gt;  [65] "IDE00425.202306251920.tif" "IDE00425.202306251930.tif"</span></span>
+<span><span class="co">#&gt;  [67] "IDE00425.202306251940.tif" "IDE00425.202306251950.tif"</span></span>
+<span><span class="co">#&gt;  [69] "IDE00425.202306252000.tif" "IDE00425.202306252010.tif"</span></span>
+<span><span class="co">#&gt;  [71] "IDE00425.202306252020.tif" "IDE00425.202306252030.tif"</span></span>
+<span><span class="co">#&gt;  [73] "IDE00425.202306252040.tif" "IDE00425.202306252050.tif"</span></span>
+<span><span class="co">#&gt;  [75] "IDE00425.202306252100.tif" "IDE00425.202306252110.tif"</span></span>
+<span><span class="co">#&gt;  [77] "IDE00425.202306252120.tif" "IDE00425.202306252130.tif"</span></span>
+<span><span class="co">#&gt;  [79] "IDE00425.202306252140.tif" "IDE00425.202306252150.tif"</span></span>
+<span><span class="co">#&gt;  [81] "IDE00425.202306252200.tif" "IDE00425.202306252210.tif"</span></span>
+<span><span class="co">#&gt;  [83] "IDE00425.202306252220.tif" "IDE00425.202306252230.tif"</span></span>
+<span><span class="co">#&gt;  [85] "IDE00425.202306252240.tif" "IDE00425.202306252250.tif"</span></span>
+<span><span class="co">#&gt;  [87] "IDE00425.202306252300.tif" "IDE00425.202306252310.tif"</span></span>
+<span><span class="co">#&gt;  [89] "IDE00425.202306252320.tif" "IDE00425.202306252330.tif"</span></span>
+<span><span class="co">#&gt;  [91] "IDE00425.202306252340.tif" "IDE00425.202306252350.tif"</span></span>
+<span><span class="co">#&gt;  [93] "IDE00425.202306260000.tif" "IDE00425.202306260010.tif"</span></span>
+<span><span class="co">#&gt;  [95] "IDE00425.202306260020.tif" "IDE00425.202306260030.tif"</span></span>
+<span><span class="co">#&gt;  [97] "IDE00425.202306260040.tif" "IDE00425.202306260050.tif"</span></span>
+<span><span class="co">#&gt;  [99] "IDE00425.202306260100.tif" "IDE00425.202306260110.tif"</span></span>
+<span><span class="co">#&gt; [101] "IDE00425.202306260120.tif" "IDE00425.202306260130.tif"</span></span>
+<span><span class="co">#&gt; [103] "IDE00425.202306260140.tif" "IDE00425.202306260150.tif"</span></span>
+<span><span class="co">#&gt; [105] "IDE00425.202306260200.tif" "IDE00425.202306260210.tif"</span></span>
+<span><span class="co">#&gt; [107] "IDE00425.202306260220.tif" "IDE00425.202306260230.tif"</span></span>
+<span><span class="co">#&gt; [109] "IDE00425.202306260250.tif" "IDE00425.202306260300.tif"</span></span>
+<span><span class="co">#&gt; [111] "IDE00425.202306260310.tif" "IDE00425.202306260320.tif"</span></span>
+<span><span class="co">#&gt; [113] "IDE00425.202306260330.tif" "IDE00425.202306260340.tif"</span></span>
+<span><span class="co">#&gt; [115] "IDE00425.202306260350.tif" "IDE00425.202306260400.tif"</span></span>
+<span><span class="co">#&gt; [117] "IDE00425.202306260410.tif" "IDE00425.202306260420.tif"</span></span>
+<span><span class="co">#&gt; [119] "IDE00425.202306260430.tif" "IDE00425.202306260440.tif"</span></span>
+<span><span class="co">#&gt; [121] "IDE00425.202306260450.tif" "IDE00425.202306260500.tif"</span></span>
+<span><span class="co">#&gt; [123] "IDE00425.202306260510.tif" "IDE00425.202306260520.tif"</span></span>
+<span><span class="co">#&gt; [125] "IDE00425.202306260530.tif" "IDE00425.202306260540.tif"</span></span>
+<span><span class="co">#&gt; [127] "IDE00425.202306260550.tif" "IDE00425.202306260600.tif"</span></span>
+<span><span class="co">#&gt; [129] "IDE00425.202306260610.tif" "IDE00425.202306260620.tif"</span></span>
+<span><span class="co">#&gt; [131] "IDE00425.202306260630.tif" "IDE00425.202306260640.tif"</span></span>
+<span><span class="co">#&gt; [133] "IDE00425.202306260650.tif" "IDE00425.202306260700.tif"</span></span>
+<span><span class="co">#&gt; [135] "IDE00425.202306260710.tif" "IDE00425.202306260740.tif"</span></span>
+<span><span class="co">#&gt; [137] "IDE00425.202306260800.tif"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-get_satellite_imagery">Using get_satellite_imagery()<a class="anchor" aria-label="anchor" href="#using-get_satellite_imagery"></a>
@@ -799,7 +820,11 @@ files first. Defaults to 1. This argument is optional.</p></li>
 visualising these files while using {weatherOz}.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
-<p><img src="plot_satellite-1.png" alt="plot of chunk plot_satellite" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="plot_satellite-1.png" alt="plot of chunk plot_satellite"><p class="caption">
+plot of chunk plot_satellite
+</p>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -831,21 +856,21 @@ Australia.</li>
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_available_radar.html">get_available_radar</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; data.table [6, 15]</span></span>
-<span><span class="co">#&gt; product_id chr IDR641 IDR642 IDR643 IDR644 IDR311 IDR312</span></span>
-<span><span class="co">#&gt; LocationID chr 64 64 64 64 31 31</span></span>
-<span><span class="co">#&gt; range      chr 512km 256km 128km 64km 512km 256km</span></span>
+<span><span class="co">#&gt; product_id chr IDR641 IDR642 IDR643 IDR644 IDR31D IDR251</span></span>
+<span><span class="co">#&gt; LocationID chr 64 64 64 64 31 25</span></span>
+<span><span class="co">#&gt; range      chr 512km 256km 128km 64km NA 512km</span></span>
 <span><span class="co">#&gt; Name       chr Adelaide Adelaide Adelaide Adelaide Albany A~</span></span>
 <span><span class="co">#&gt; Longitude  dbl 138.4689 138.4689 138.4689 138.4689 117.8163~</span></span>
 <span><span class="co">#&gt; Latitude   dbl -34.6169 -34.6169 -34.6169 -34.6169 -34.9418~</span></span>
-<span><span class="co">#&gt; Radar_id   int 64 64 64 64 31 31</span></span>
+<span><span class="co">#&gt; Radar_id   int 64 64 64 64 31 25</span></span>
 <span><span class="co">#&gt; Full_Name  chr Adelaide (Buckland Park) Adelaide (Buckland ~</span></span>
-<span><span class="co">#&gt; IDRnn0name chr BuckPk BuckPk BuckPk BuckPk Albany Albany</span></span>
+<span><span class="co">#&gt; IDRnn0name chr BuckPk BuckPk BuckPk BuckPk Albany AliceSp</span></span>
 <span><span class="co">#&gt; IDRnn1name chr BucklandPk BucklandPk BucklandPk BucklandPk ~</span></span>
-<span><span class="co">#&gt; State      chr SA SA SA SA WA WA</span></span>
-<span><span class="co">#&gt; Type       chr Doppler Doppler Doppler Doppler Doppler Dopp~</span></span>
+<span><span class="co">#&gt; State      chr SA SA SA SA WA NT</span></span>
+<span><span class="co">#&gt; Type       chr Doppler Doppler Doppler Doppler Doppler Stan~</span></span>
 <span><span class="co">#&gt; Group_     chr Yes Yes Yes Yes Yes Yes</span></span>
 <span><span class="co">#&gt; Status     chr Public Public Public Public Public Public</span></span>
-<span><span class="co">#&gt; Archive    chr BuckPk BuckPk BuckPk BuckPk Albany Albany</span></span></code></pre></div>
+<span><span class="co">#&gt; Archive    chr BuckPk BuckPk BuckPk BuckPk Albany AliceSp</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-get_radar_imagery">Using get_radar_imagery()<a class="anchor" aria-label="anchor" href="#using-get_radar_imagery"></a>
@@ -866,9 +891,13 @@ specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDR032"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; file downloaded to:/var/folders/ch/8fqkzddj1kj_qb5ddfdd3p1w0000gn/T//Rtmp47TcBG/file33021cd79c7.png</span></span>
+<span><span class="co">#&gt; file downloaded to:/var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//RtmphuECUG/file12454264e0df9.png</span></span>
 <span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
-<p><img src="get_radar_imagery-1.png" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="get_radar_imagery-1.png" alt="plot of chunk get_radar_imagery"><p class="caption">
+plot of chunk get_radar_imagery
+</p>
+</div>
 </div>
 </div>
 <div class="section level2">

@@ -61,6 +61,9 @@
     <loc>/reference/get_data_drill.html</loc>
   </url>
   <url>
+    <loc>/reference/get_data_drill_apsim.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_dpird_availability.html</loc>
   </url>
   <url>
@@ -74,6 +77,9 @@
   </url>
   <url>
     <loc>/reference/get_patched_point.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_patched_point_apsim.html</loc>
   </url>
   <url>
     <loc>/reference/get_precis_forecast.html</loc>
