@@ -184,7 +184,41 @@ Sparks <a href="mailto:adam.sparks@dpird.wa.gov.au">adam.sparks@dpird.wa.gov.au<
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Note that queries to the DPIRD API require you to have your own API key.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Query WA only stations and return DPIRD's stations nearest to the</span></span></span>
+<span class="r-in"><span><span class="co"># Northam, WA station, "NO", returning stations with 50 km of this station</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">wa_stn</span> <span class="op">&lt;-</span> <span class="fu">find_nearby_stations</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  station_code <span class="op">=</span> <span class="st">"NO"</span>,</span></span>
+<span class="r-in"><span>  distance_km <span class="op">=</span> <span class="fl">50</span>,</span></span>
+<span class="r-in"><span>  api_key <span class="op">=</span> <span class="st">"your_api_key"</span>,</span></span>
+<span class="r-in"><span>  which_api <span class="op">=</span> <span class="st">"dpird"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Query stations nearest DPIRD's Northam, WA station, "NO" and return both</span></span></span>
+<span class="r-in"><span><span class="co"># DPIRD and SILO/BOM stations within 50 km of this station.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">wa_stn</span> <span class="op">&lt;-</span> <span class="fu">find_nearby_stations</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  station_code <span class="op">=</span> <span class="st">"NO"</span>,</span></span>
+<span class="r-in"><span>  distance_km <span class="op">=</span> <span class="fl">50</span>,</span></span>
+<span class="r-in"><span>  api_key <span class="op">=</span> <span class="st">"your_api_key"</span>,</span></span>
+<span class="r-in"><span>  which_api <span class="op">=</span> <span class="st">"all"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Query Wagga Wagga BOM station finding stations within 200 km of it.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">wagga_stn</span> <span class="op">&lt;-</span> <span class="fu">find_nearby_stations</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  latitude <span class="op">=</span> <span class="op">-</span><span class="fl">35.1583</span>,</span></span>
+<span class="r-in"><span>  longitude <span class="op">=</span> <span class="fl">147.4575</span>,</span></span>
+<span class="r-in"><span>  distance_km <span class="op">=</span> <span class="fl">200</span>,</span></span>
+<span class="r-in"><span>  which_api <span class="op">=</span> <span class="st">"silo"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
