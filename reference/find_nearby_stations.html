@@ -140,7 +140,7 @@ Defaults to <code>FALSE</code> with closed stations not included.</p></dd>
     <h2>Value</h2>
     
 
-<p>a <a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table::data.table</a> with <code>station_code</code>, <code>station_name</code>,
+<p>A <a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table::data.table</a> with <code>station_code</code>, <code>station_name</code>,
 <code>latitude</code>, <code>longitude</code>, <code>elev_m</code>, <code>state</code>, <code>owner</code>, and <code>distance</code>.
 Data are sorted by increasing distance from station or location of
 interest.</p>
@@ -208,7 +208,9 @@ Sparks <a href="mailto:adam.sparks@dpird.wa.gov.au">adam.sparks@dpird.wa.gov.au<
 <span class="r-in"><span>  which_api <span class="op">=</span> <span class="st">"all"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Query Wagga Wagga BOM station finding stations within 200 km of it.</span></span></span>
+<span class="r-in"><span><span class="co"># Query Wagga Wagga BOM station finding stations within 200 km of it, note</span></span></span>
+<span class="r-in"><span><span class="co"># that it is not necessary to provide an `api_key` for SILO queries of</span></span></span>
+<span class="r-in"><span><span class="co"># nearby stations.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">wagga_stn</span> <span class="op">&lt;-</span> <span class="fu">find_nearby_stations</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  latitude <span class="op">=</span> <span class="op">-</span><span class="fl">35.1583</span>,</span></span>
