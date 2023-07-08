@@ -62,6 +62,9 @@
 <li>
       <a href="../articles/use_case.html">weatherOz Use Case</a>
     </li>
+    <li>
+      <a href="../articles/weatherOz_for_BOM.html">weatherOz for BOM</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -145,12 +148,10 @@ create a dummy set of subscribers, locations, and email addresses.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">subscribers_list</span><span class="op">)</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Entry"</span>, <span class="st">"Name"</span>, <span class="st">"Surname"</span>, <span class="st">"Location"</span>, <span class="st">"email"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">subscribers_list</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## data.frame [3, 5]</span></span>
-<span><span class="co">## Entry    chr 1 2 3</span></span>
-<span><span class="co">## Name     chr Joe John Jayne</span></span>
-<span><span class="co">## Surname  chr Blogs Doe Doe</span></span>
-<span><span class="co">## Location chr Dalby Toowoomba Warwick</span></span>
-<span><span class="co">## email    chr XXXX.XXXX@gmail.com XXXX.XXXX@hotmail.com 123.~</span></span></code></pre>
+<pre><code><span><span class="co">##   Entry  Name Surname  Location                 email</span></span>
+<span><span class="co">## 1     1   Joe   Blogs     Dalby   XXXX.XXXX@gmail.com</span></span>
+<span><span class="co">## 2     2  John     Doe Toowoomba XXXX.XXXX@hotmail.com</span></span>
+<span><span class="co">## 3     3 Jayne     Doe   Warwick     123.123@gmail.com</span></span></code></pre>
 <p>We also need to specify our email address and password. For this
 project we are using a gmail account to send the email alerts.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -248,7 +249,7 @@ version 0.4.1.https://CRAN.R-project.org/package=mailR</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
+<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">

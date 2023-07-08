@@ -41,6 +41,9 @@ set, but there is no corresponding BOM metadata available."><meta property="og:i
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/use_case.html">weatherOz Use Case</a>
     </li>
+    <li>
+      <a href="../articles/weatherOz_for_BOM.html">weatherOz for BOM</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -132,6 +135,12 @@ made. <code>NA</code> in the current year indicates a station is still open.</p>
 metadata, <em>e.g.</em> longitude and latitude values and <acronym>SILO</acronym> metadata.
 In these cases, the <acronym>BOM</acronym> metadata is used as it is considered to
 be the authority on the stations' locations.</p>
+<p>The station names are returned by both <acronym>API</acronym>s in full caps.
+For purposes of cleaner graphs and maps where these data may be sued, this
+function converts them to proper name formats/title case with the first
+letter of every word capitalised excepting words like “at” or
+“on” and keeps acronyms like “AWS” or “PIRSA” or state
+abbreviations in the station names as all caps.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -187,7 +196,7 @@ Meteorology (<acronym>BOM</acronym>) webpage, Bureau of Meteorology Site Numbers
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
+  <p></p><p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">

@@ -62,6 +62,9 @@
 <li>
       <a href="../articles/use_case.html">weatherOz Use Case</a>
     </li>
+    <li>
+      <a href="../articles/weatherOz_for_BOM.html">weatherOz for BOM</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -111,1645 +114,286 @@ Western Australia, and by the Science and Technology Division of the
 Queensland Government’s Department of Environment and Science (DES). As
 well as Australian Government Bureau of Meteorology (‘BOM’) précis and
 coastal forecasts, agriculture bulletin data, and downloading and
-importing radar and satellite imagery files. DPIRD weather data are
-accessed through public APIs provided by DPIRD, <a href="https://www.agric.wa.gov.au/weather-api-20" class="external-link uri">https://www.agric.wa.gov.au/weather-api-20</a>, providing
+importing radar and satellite imagery files.</p>
+<p>DPIRD weather data are accessed through public APIs provided by
+DPIRD, <a href="https://www.agric.wa.gov.au/weather-api-20" class="external-link uri">https://www.agric.wa.gov.au/weather-api-20</a>, providing
 access to weather station data from DPIRD’s own weather station network.
-Australia-wide weather data are based on data from the Australian Bureau
-of Meteorology (BOM) data and accessed through SILO (Scientific
-Information for Land Owners) (Jeffery et al., 2001). BOM also serves
-several types of data data as XML, JSON and SHTML files. This package
-fetches these files, parses them and return a data frame. Satellite and
-radar imagery files are also made available to the public via anonymous
-FTP. {weatherOz} provides functionality to query, fetch and create
-<code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster()</a></code> objects of the GeoTIFF imagery or a
-magick object of radar image.png files.</p>
+Detailed information on using {weatherOz} with DPIRD data is available
+in the <a href=""></a> vignette.</p>
+<p>Australia-wide weather data are based on data from the Australian
+Bureau of Meteorology (BOM) data and accessed through SILO (Scientific
+Information for Land Owners) (Jeffery et al., 2001). More details on
+using {weatherOz} with SILO data are available in the <a href=""></a>
+vignette.</p>
+<p>BOM also serves several types of data data as XML, JSON and SHTML
+files. This package fetches these files, parses them and return a data
+frame. Satellite and radar imagery files are also made available to the
+public via anonymous FTP. {weatherOz} provides functionality to query,
+fetch and create <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster()</a></code> or {stars} objects of
+GeoTIFF satellite imagery or a {magick} object of radar image.png files.
+For detailed information on using {weatherOz} with BOM data, please see
+the <a href="weatherOz-for-BOM-Data-Resources.html">weatherOz for BOM
+Data Resources</a> vignette.</p>
+<p>Following is a quick demonstration of some common tasks that you may
+wish to undertake while using {weatherOz}.</p>
 </div>
 <div class="section level2">
-<h2 id="using-weatheroz">Using {weatherOz}<a class="anchor" aria-label="anchor" href="#using-weatheroz"></a>
+<h2 id="using-weatheroz-to-fetch-daily-summary-dpird-data">Using {weatherOz} to Fetch Daily Summary DPIRD Data<a class="anchor" aria-label="anchor" href="#using-weatheroz-to-fetch-daily-summary-dpird-data"></a>
 </h2>
-<p>Several functions are provided by {weatherOz} to retrieve Australian
-Bureau of Meteorology (BOM) data. A family of functions retrieve weather
-data and return data frames; * <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which
-retrieves the précis (short) forecast; * <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>,
-which retrieves the agriculture bulletin; *
-<code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>, which fetches coastal waters
-forecasts for each state; and A second family of functions retrieve
-information pertaining to satellite and radar imagery,
-<code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself,
-<code>_imagery()</code> for satellite, and
-<code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code>
-for radar images. The last group functions provides internal
-functionality for {weatherOz} itself;
-<code>update_forecast_towns()</code>, which updates an internal database
-of forecast locations distributed with the package,
-<code>update_ag_station_locations()</code>, which updates an internal
-database of the stations reporting ag bulletins and
-<code><a href="../reference/find_forecast_towns.html">find_forecast_towns()</a></code> and find_nearby_stations()` which
-returns either the closest forecast locations or the nearest weather
-stations with an ag bulletin to a given point in Australia.</p>
-</div>
-<div class="section level2">
-<h2 id="using-get_precis_forecast">Using get_precis_forecast()<a class="anchor" aria-label="anchor" href="#using-get_precis_forecast"></a>
-</h2>
-<p>This function only takes one argument, <code>state</code>. The
-<code>state</code> parameter allows the user to select the forecast for
-just one state or a national forecast. States or territories are
-specified using the official postal codes or full name with fuzzy
-matching performed via <code><a href="https://rdrr.io/r/base/agrep.html" class="external-link">agrep()</a></code>.</p>
-<ul>
-<li><p><strong>ACT</strong> - Australian Capital Territory</p></li>
-<li><p><strong>NSW</strong> - New South Wales</p></li>
-<li><p><strong>NT</strong> - Northern Territory</p></li>
-<li><p><strong>QLD</strong> - Queensland</p></li>
-<li><p><strong>SA</strong> - South Australia</p></li>
-<li><p><strong>TAS</strong> - Tasmania</p></li>
-<li><p><strong>VIC</strong> - Victoria</p></li>
-<li><p><strong>WA</strong> - Western Australia</p></li>
-<li><p><strong>AUS</strong> - Australia, returns national forecast
-including all states, NT and ACT.</p></li>
-</ul>
-<div class="section level3">
-<h3 id="results">Results<a class="anchor" aria-label="anchor" href="#results"></a>
-</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data
-frame of the weather forecast for the daily forecast for selected towns.
-See Appendix 1 for a full description of the fields and values.</p>
-</div>
-<div class="section level3">
-<h3 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
-</h3>
-<p>Following is an example fetching the forecast for Queensland.</p>
+<p>Daily summary weather data is frequently used. The following example
+will demonstrate how you can find and download weather station data for
+stations in or near Northam, WA for the year of 2022. This example
+assumes that you have stored your DPIRD API key in your .Renviron
+file.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">QLD_forecast</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"QLD"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   -----------  Australian Bureau of Meteorology (BOM) Précis Forecast. -</span></span>
-<span><span class="co">#&gt;   The HTML version of Short Form (Précis) Forecast for </span></span>
-<span><span class="co">#&gt;   QLD can be found at:</span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/qld/forecasts/state.shtml&gt;</span></span>
-<span><span class="co">#&gt;   Please note information at the page </span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/catalogue/data-feeds.shtml#precis&gt;</span></span>
-<span><span class="co">#&gt;   --------------------------------------------------------------------------------  </span></span>
-<span><span class="co">#&gt; data.table [904, 19]</span></span>
-<span><span class="co">#&gt; index                        fct  0 1 2 3 4 5</span></span>
-<span><span class="co">#&gt; product_id                   chr  IDQ11295 IDQ11295 IDQ1129~</span></span>
-<span><span class="co">#&gt; state                        chr  QLD QLD QLD QLD QLD QLD</span></span>
-<span><span class="co">#&gt; town                         chr  Brisbane Brisbane Brisban~</span></span>
-<span><span class="co">#&gt; aac                          chr  QLD_PT001 QLD_PT001 QLD_P~</span></span>
-<span><span class="co">#&gt; lat                          dbl  -27.4808 -27.4808 -27.480~</span></span>
-<span><span class="co">#&gt; lon                          dbl  153.0389 153.0389 153.038~</span></span>
-<span><span class="co">#&gt; elev                         dbl  8.1 8.1 8.1 8.1 8.1 8.1</span></span>
-<span><span class="co">#&gt; start_time_local             dttm 2023-06-26 17:00:00 2023-~</span></span>
-<span><span class="co">#&gt; end_time_local               dttm 2023-06-27 2023-06-28 202~</span></span>
-<span><span class="co">#&gt; utc_offset                   fct  10:00 10:00 10:00 10:00 1~</span></span>
-<span><span class="co">#&gt; start_time_utc               dttm 2023-06-26 07:00:00 2023-~</span></span>
-<span><span class="co">#&gt; end_time_utc                 dttm 2023-06-26 14:00:00 2023-~</span></span>
-<span><span class="co">#&gt; minimum_temperature          dbl  NA 9 10 15 9 8</span></span>
-<span><span class="co">#&gt; maximum_temperature          dbl  NA 22 24 23 22 21</span></span>
-<span><span class="co">#&gt; lower_precipitation_limit    dbl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; upper_precipitation_limit    dbl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; precis                       chr  Clear. Sunny. Partly clou~</span></span>
-<span><span class="co">#&gt; probability_of_precipitation dbl  0 0 0 5 0 0</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-get_ag_bulletin">Using get_ag_bulletin()<a class="anchor" aria-label="anchor" href="#using-get_ag_bulletin"></a>
-</h2>
-<p><code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> only takes one argument,
-<code>state</code>. The <code>state</code> parameter allows the user to
-select the bulletin for just one state or a national forecast. States or
-territories are specified using the official postal codes or full name
-with fuzzy matching performed via <code><a href="https://rdrr.io/r/base/agrep.html" class="external-link">agrep()</a></code>.</p>
-<ul>
-<li><p><strong>NSW</strong> - New South Wales</p></li>
-<li><p><strong>NT</strong> - Northern Territory</p></li>
-<li><p><strong>QLD</strong> - Queensland</p></li>
-<li><p><strong>SA</strong> - South Australia</p></li>
-<li><p><strong>TAS</strong> - Tasmania</p></li>
-<li><p><strong>VIC</strong> - Victoria</p></li>
-<li><p><strong>WA</strong> - Western Australia</p></li>
-<li><p><strong>AUS</strong> - Australia, returns bulletin for all states
-and NT.</p></li>
-</ul>
-<div class="section level3">
-<h3 id="results-1">Results<a class="anchor" aria-label="anchor" href="#results-1"></a>
-</h3>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data
-frame of the agriculture bulletin for selected stations. See Appendix 3
-for a full list and description of the fields and values.</p>
-</div>
-<div class="section level3">
-<h3 id="example-1">Example<a class="anchor" aria-label="anchor" href="#example-1"></a>
-</h3>
-<p>Following is an example fetching the ag bulletin for Queensland.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">QLD_bulletin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"QLD"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   -----------  Australian Bureau of Meteorology (BOM) Ag Bulletin. -----------</span></span>
-<span><span class="co">#&gt;   Please note information at the foot of:</span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ60604.html&gt;</span></span>
-<span><span class="co">#&gt;   the HTML version of Agricultural Observations Bulletin for </span></span>
-<span><span class="co">#&gt;   QLD.  Also see: </span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml&gt;.</span></span>
-<span><span class="co">#&gt;   ----------------------------------------------------------------------------  </span></span>
-<span><span class="co">#&gt; data.table [29, 21]</span></span>
-<span><span class="co">#&gt; product_id     fct  IDQ60604 IDQ60604 IDQ60604 IDQ60604 IDQ~</span></span>
-<span><span class="co">#&gt; state          chr  QLD QLD QLD QLD QLD QLD</span></span>
-<span><span class="co">#&gt; station        chr  Ayr Birdsville Brisbane Airport Bundabe~</span></span>
-<span><span class="co">#&gt; site           fct  33002 38026 40842 39128 31011 44021</span></span>
-<span><span class="co">#&gt; obs_time_local dttm 2023-06-26 09:00:00 2023-06-26 09:00:00~</span></span>
-<span><span class="co">#&gt; obs_time_utc   dttm 2023-06-25 23:00:00 2023-06-25 23:00:00~</span></span>
-<span><span class="co">#&gt; time_zone      chr  EST EST EST EST EST EST</span></span>
-<span><span class="co">#&gt; r              dbl  0 0 0 0 0 0</span></span>
-<span><span class="co">#&gt; tn             dbl  16.5 11.4 13.4 15.9 20 6.5</span></span>
-<span><span class="co">#&gt; tx             dbl  28.1 21.9 23.2 26.8 29.1 24.8</span></span>
-<span><span class="co">#&gt; twd            dbl  NA 6.8 9.8 0.1 4.3 7.2</span></span>
-<span><span class="co">#&gt; ev             dbl  NA NA 3.8 NA NA NA</span></span>
-<span><span class="co">#&gt; tg             dbl  NA NA 7.3 NA NA NA</span></span>
-<span><span class="co">#&gt; sn             dbl  NA NA 9.9 NA NA NA</span></span>
-<span><span class="co">#&gt; solr           dbl  16.7 14.1 13.9 14.8 16.2 14.4</span></span>
-<span><span class="co">#&gt; t5             dbl  NA NA NA 19.4 NA NA</span></span>
-<span><span class="co">#&gt; t10            dbl  NA NA NA 19.8 NA NA</span></span>
-<span><span class="co">#&gt; t20            dbl  NA NA NA 20.5 NA NA</span></span>
-<span><span class="co">#&gt; t50            dbl  NA NA NA 20 NA NA</span></span>
-<span><span class="co">#&gt; t1m            dbl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; wr             dbl  NA NA 148 NA NA NA</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-get_coastal_forecast">Using get_coastal_forecast()<a class="anchor" aria-label="anchor" href="#using-get_coastal_forecast"></a>
-</h2>
-<p>This function only takes one argument, <code>state</code>. The
-<code>state</code> parameter allows the user to select the forecast for
-just one state or a national forecast. States or territories are
-specified using the official postal codes or full name with fuzzy
-matching performed via <code><a href="https://rdrr.io/r/base/agrep.html" class="external-link">agrep()</a></code></p>
-<ul>
-<li><p><strong>ACT</strong> - Australian Capital Territory</p></li>
-<li><p><strong>NSW</strong> - New South Wales</p></li>
-<li><p><strong>NT</strong> - Northern Territory</p></li>
-<li><p><strong>QLD</strong> - Queensland</p></li>
-<li><p><strong>SA</strong> - South Australia</p></li>
-<li><p><strong>TAS</strong> - Tasmania</p></li>
-<li><p><strong>VIC</strong> - Victoria</p></li>
-<li><p><strong>WA</strong> - Western Australia</p></li>
-<li><p><strong>AUS</strong> - Australia, returns national forecast
-including all states, NT and ACT.</p></li>
-</ul>
-<div class="section level3">
-<h3 id="results-2">Results<a class="anchor" aria-label="anchor" href="#results-2"></a>
-</h3>
-<p>The function, <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>, will return a data
-frame of the coastal waters forecast for marine zones in each state. See
-Appendix 6 for a full description of the fields and values.</p>
-</div>
-<div class="section level3">
-<h3 id="example-2">Example<a class="anchor" aria-label="anchor" href="#example-2"></a>
-</h3>
-<p>Following is an example fetching the forecast for Queensland.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">QLD_coastal_forecast</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_coastal_forecast.html">get_coastal_forecast</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"QLD"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   -------  Australian Bureau of Meteorology (BOM) Coastal Waters Forecast. -------</span></span>
-<span><span class="co">#&gt;   Please note information at the foot of:</span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/cgi-bin/wrap_fwo.pl?IDQ11290.html&gt;</span></span>
-<span><span class="co">#&gt;   the HTML version of Coastal Waters Forecast for </span></span>
-<span><span class="co">#&gt;   QLD.</span></span>
-<span><span class="co">#&gt;   Also see </span></span>
-<span><span class="co">#&gt;   &lt;http://www.bom.gov.au/catalogue/observations/about-coastal-observations.shtml&gt;.</span></span>
-<span><span class="co">#&gt;   --------------------------------------------------------------------------------  </span></span>
-<span><span class="co">#&gt; data.table [64, 22]</span></span>
-<span><span class="co">#&gt; index                    fct  NA NA NA NA 0 1</span></span>
-<span><span class="co">#&gt; product_id               chr  IDQ11290 IDQ11290 IDQ11290 ID~</span></span>
-<span><span class="co">#&gt; type                     chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; state_code               chr  QLD QLD QLD QLD QLD QLD</span></span>
-<span><span class="co">#&gt; dist_name                chr  Queensland Queensland Gulf of~</span></span>
-<span><span class="co">#&gt; pt_1_name                chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; pt_2_name                chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; aac                      chr  QLD_FA001 QLD_FA002 QLD_FA003~</span></span>
-<span><span class="co">#&gt; start_time_local         dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
-<span><span class="co">#&gt; end_time_local           dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
-<span><span class="co">#&gt; utc_offset               fct  10:00 10:00 10:00 10:00 10:00~</span></span>
-<span><span class="co">#&gt; start_time_utc           dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
-<span><span class="co">#&gt; end_time_utc             dttm 2023-06-26 15:50:20 2023-06-2~</span></span>
-<span><span class="co">#&gt; forecast_seas            chr  NA NA NA NA Below 1 metre, in~</span></span>
-<span><span class="co">#&gt; forecast_weather         chr  NA NA NA NA Clear. Partly clo~</span></span>
-<span><span class="co">#&gt; forecast_winds           chr  NA NA NA NA Northeast to sout~</span></span>
-<span><span class="co">#&gt; forecast_swell1          chr  NA NA NA NA NA Below 0.5 metr~</span></span>
-<span><span class="co">#&gt; forecast_swell2          chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; forecast_caution         chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; marine_forecast          chr  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; tropical_system_location lgl  NA NA NA NA NA NA</span></span>
-<span><span class="co">#&gt; forecast_waves           lgl  NA NA NA NA NA NA</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-find_nearby_stations">Using find_nearby_stations()<a class="anchor" aria-label="anchor" href="#using-find_nearby_stations"></a>
-</h2>
-<p><code>sweep_for_stations()</code> only takes one argument,
-<code>latlon</code>, a length-2 numeric vector. By default, this is
-Canberra (approximately).</p>
-<div class="section level3">
-<h3 id="results-3">Results<a class="anchor" aria-label="anchor" href="#results-3"></a>
-</h3>
-<p>This function will search for weather stations and return a data
-frame of all weather stations (in this package) sorted by distance from
-<code>latlon</code>, ascending. The fields in the data frame are:</p>
-<p><strong>name</strong> - station name</p>
-<p><strong>lat</strong> - latitude (decimal degrees)</p>
-<p><strong>lon</strong> - longitude (decimal degrees)</p>
-<p><strong>distance</strong> - distance from provided
-<code>latlon</code> value (kilometres).</p>
-</div>
-<div class="section level3">
-<h3 id="example-1-1">Example 1<a class="anchor" aria-label="anchor" href="#example-1-1"></a>
-</h3>
-<p>Following is an example sweeping for stations starting with Canberra.
-Note that this code chunk is not executed due to the need of an API key.
-We get the station distances in this function from the DPIRD API so you
-will need to supply your own API key.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Show only the first ten stations in the list</span></span>
-<span><span class="fu"><a href="../reference/find_nearby_stations.html">find_nearby_stations</a></span><span class="op">(</span></span>
-<span>  latitude <span class="op">=</span> <span class="op">-</span><span class="fl">35.4</span>,</span>
-<span>  longitude <span class="op">=</span> <span class="fl">149.2</span>,</span>
-<span>  distance_km <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  api_key <span class="op">=</span> <span class="va">YOUR_API_KEY</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-find_forecast_towns">Using find_forecast_towns()<a class="anchor" aria-label="anchor" href="#using-find_forecast_towns"></a>
-</h2>
-<p><code><a href="../reference/find_forecast_towns.html">find_forecast_towns()</a></code> only takes one argument,
-<code>latlon</code>, a length-2 numeric vector. By default, this is
-Canberra (approximately).</p>
-<div class="section level3">
-<h3 id="results-4">Results<a class="anchor" aria-label="anchor" href="#results-4"></a>
-</h3>
-<p>This function will search for weather stations and return a data
-frame of all weather stations (in this package) sorted by distance from
-<code>latlon</code>, ascending. The fields in the data frame are:</p>
-<p><strong>name</strong> - forecast town</p>
-<p><strong>lat</strong> - latitude (decimal degrees)</p>
-<p><strong>lon</strong> - longitude (decimal degrees)</p>
-<p><strong>distance</strong> - distance from provided
-<code>latlon</code> value (kilometres).</p>
-</div>
-<div class="section level3">
-<h3 id="example-3">Example<a class="anchor" aria-label="anchor" href="#example-3"></a>
-</h3>
-<p>Following is an example sweeping for forecast towns starting with
-Canberra. As this function is executed locally using great circle
-distances, it doesn’t need an API key.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Show only the first ten towns in the list</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/find_forecast_towns.html">find_forecast_towns</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">35.3</span>, longitude <span class="op">=</span> <span class="fl">149.2</span>, distance_km <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; data.table [6, 6]</span></span>
-<span><span class="co">#&gt; aac      chr NSW_PT027 NSW_PT235 NSW_PT329 NSW_PT281 NSW_PT~</span></span>
-<span><span class="co">#&gt; town     chr Canberra Queanbeyan Portable RFSACT03 Woden Va~</span></span>
-<span><span class="co">#&gt; lon      dbl 149.2003 149.2346 149.3162 149.08454 149.06769~</span></span>
-<span><span class="co">#&gt; lat      dbl -35.3088 -35.3485 -35.3111 -35.34844 -35.23538~</span></span>
-<span><span class="co">#&gt; elev     dbl 577.6 612 719 610 570 621.5</span></span>
-<span><span class="co">#&gt; distance dbl 0.978709 6.238937 10.615318 11.77715 13.995264~</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-the-update-functions">Using the update functions<a class="anchor" aria-label="anchor" href="#using-the-update-functions"></a>
-</h2>
-<p>{weatherOz} uses internal databases of station location data from BOM
-to provide location and other metadata, <em>e.g.</em> elevation, station
-names, WMO codes, etc. to make the process of querying for weather data
-faster. These databases are created and packaged with {weatherOz} for
-distribution and are updated with new releases. Users have the option of
-updating these databases after installing {weatherOz}. While this option
-gives the users the ability to keep the databases up-to-date and gives
-{weatherOz}’s authors flexibility in maintaining it, this also means
-that reproducibility may be affected since the same version of
-{weatherOz} may have different databases on different machines. If
-reproducibility is necessary, care should be taken to ensure that the
-version of the databases is the same across different machines.</p>
-<p>The databases consist of three files, used by {weatherOz},
-<code>AAC_codes.rda</code>,
-<code>JSONurl_latlon_by_station_name.rda</code> and
-<code>stations_site_list.rda</code>. These files can be located on your
-local system by using the following command,</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"/weatherOz/extdata"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
-<p>unless you have specified another location for library installations
-and installed {weatherOz} there, in which case it would still be in
-<code>weatherOz/extdata</code>.</p>
-<div class="section level3">
-<h3 id="using-update_forecast_towns">Using update_forecast_towns()<a class="anchor" aria-label="anchor" href="#using-update_forecast_towns"></a>
-</h3>
-<p><code>update_forecast_towns()</code> downloads the latest précis
-forecast locations from the BOM server and updates {weatherOz}’s
-internal database of towns used for forecast locations. This database is
-distributed with the package to make the process faster when fetching
-the forecast.</p>
-</div>
-<div class="section level3">
-<h3 id="example-4">Example<a class="anchor" aria-label="anchor" href="#example-4"></a>
-</h3>
-<p>Following is an example updating the précis forecast locations
-internal database.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">update_forecast_towns</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="using-update_station_locations">Using update_station_locations<a class="anchor" aria-label="anchor" href="#using-update_station_locations"></a>
-</h3>
-<p><code>update_station_locations()</code> downloads the latest station
-locations and metadata and updates {weatherOz}’s internal databases that
-support the use of <code>get_current_weather()</code> and
-<code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you
-know that a station exists in BOM’s database that is not available in
-the databases distributed with {weatherOz}.</p>
-</div>
-<div class="section level3">
-<h3 id="example-5">Example<a class="anchor" aria-label="anchor" href="#example-5"></a>
-</h3>
-<p>Following is an example updating the précis forecast locations
-internal database.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">update_station_locations</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-weatheroz-to-retrieve-satellite-imagery">Using {weatherOz} to retrieve satellite imagery<a class="anchor" aria-label="anchor" href="#using-weatheroz-to-retrieve-satellite-imagery"></a>
-</h2>
-<p>{weatherOz} provides functionality to retrieve high-definition
-GeoTIFF satellite imagery provided by BOM through public FTP with the
-following types of imagery being available: i.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#ir" class="external-link">Infrared
-images</a>, ii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#vis" class="external-link">Visible
-images</a> and iii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud" class="external-link">Clouds/surface
-composite</a>.</p>
-<p>Valid BOM satellite Product IDs for GeoTIFF files include:</p>
-<table class="table">
-<tr>
-<th>
-Product ID
-</th>
-<th>
-Description
-</th>
-<th>
-Type
-</th>
-<th>
-Delete time
-</th>
-</tr>
-<tr>
-<td>
-IDE00420
-</td>
-<td>
-AHI cloud cover only 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00421
-</td>
-<td>
-AHI IR (Ch13) greyscale 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00422
-</td>
-<td>
-AHI VIS (Ch3) greyscale 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00423
-</td>
-<td>
-AHI IR (Ch13) Zehr 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00425
-</td>
-<td>
-AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00426
-</td>
-<td>
-AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00427
-</td>
-<td>
-AHI WV (Ch8) 2km FD GEOS
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00430
-</td>
-<td>
-AHI cloud cover only 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00431
-</td>
-<td>
-AHI IR (Ch13) greyscale 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00432
-</td>
-<td>
-AHI VIS (Ch3) greyscale 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00433
-</td>
-<td>
-AHI IR (Ch13) Zehr 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00435
-</td>
-<td>
-AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00436
-</td>
-<td>
-AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00437
-</td>
-<td>
-AHI WV (Ch8) 2km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td>
-IDE00439
-</td>
-<td>
-AHI VIS (Ch3) greyscale 0.5km AUS equirect.
-</td>
-<td>
-Satellite
-</td>
-<td style="text-align: center;">
-24
-</td>
-</tr>
-<tr>
-<td colspan="3">
-<strong>Information gathered from Australian Bureau of Meteorology
-(BOM)</strong>
-</td>
-</tr>
-</table>
-<div class="section level3">
-<h3 id="using-get_available_imagery">Using get_available_imagery()<a class="anchor" aria-label="anchor" href="#using-get_available_imagery"></a>
-</h3>
-<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument,
-<code>product_id</code>, a BOM identifier for the imagery that you wish
-to check for available imagery. Using this function will fetch a listing
-of BOM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/">ftp://ftp.bom.gov.au/anon/gen/gms/</a>
-to display which files are currently available for download. These files
-are available at ten minute update frequency with a 24 hour delete time.
-This function can be used see the most recent files available and then
-specify in the <code>_imagery()</code> function. If no valid Product ID
-is supplied, defaults to all GeoTIFF images currently available.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">avail</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDE00425"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   [1] "IDE00425.202306250810.tif" "IDE00425.202306250820.tif"</span></span>
-<span><span class="co">#&gt;   [3] "IDE00425.202306250830.tif" "IDE00425.202306250840.tif"</span></span>
-<span><span class="co">#&gt;   [5] "IDE00425.202306250850.tif" "IDE00425.202306250900.tif"</span></span>
-<span><span class="co">#&gt;   [7] "IDE00425.202306250910.tif" "IDE00425.202306250920.tif"</span></span>
-<span><span class="co">#&gt;   [9] "IDE00425.202306250930.tif" "IDE00425.202306250940.tif"</span></span>
-<span><span class="co">#&gt;  [11] "IDE00425.202306250950.tif" "IDE00425.202306251000.tif"</span></span>
-<span><span class="co">#&gt;  [13] "IDE00425.202306251010.tif" "IDE00425.202306251020.tif"</span></span>
-<span><span class="co">#&gt;  [15] "IDE00425.202306251030.tif" "IDE00425.202306251040.tif"</span></span>
-<span><span class="co">#&gt;  [17] "IDE00425.202306251050.tif" "IDE00425.202306251100.tif"</span></span>
-<span><span class="co">#&gt;  [19] "IDE00425.202306251110.tif" "IDE00425.202306251120.tif"</span></span>
-<span><span class="co">#&gt;  [21] "IDE00425.202306251130.tif" "IDE00425.202306251140.tif"</span></span>
-<span><span class="co">#&gt;  [23] "IDE00425.202306251150.tif" "IDE00425.202306251200.tif"</span></span>
-<span><span class="co">#&gt;  [25] "IDE00425.202306251210.tif" "IDE00425.202306251220.tif"</span></span>
-<span><span class="co">#&gt;  [27] "IDE00425.202306251230.tif" "IDE00425.202306251240.tif"</span></span>
-<span><span class="co">#&gt;  [29] "IDE00425.202306251250.tif" "IDE00425.202306251300.tif"</span></span>
-<span><span class="co">#&gt;  [31] "IDE00425.202306251310.tif" "IDE00425.202306251320.tif"</span></span>
-<span><span class="co">#&gt;  [33] "IDE00425.202306251330.tif" "IDE00425.202306251340.tif"</span></span>
-<span><span class="co">#&gt;  [35] "IDE00425.202306251350.tif" "IDE00425.202306251400.tif"</span></span>
-<span><span class="co">#&gt;  [37] "IDE00425.202306251410.tif" "IDE00425.202306251420.tif"</span></span>
-<span><span class="co">#&gt;  [39] "IDE00425.202306251430.tif" "IDE00425.202306251450.tif"</span></span>
-<span><span class="co">#&gt;  [41] "IDE00425.202306251500.tif" "IDE00425.202306251510.tif"</span></span>
-<span><span class="co">#&gt;  [43] "IDE00425.202306251540.tif" "IDE00425.202306251550.tif"</span></span>
-<span><span class="co">#&gt;  [45] "IDE00425.202306251600.tif" "IDE00425.202306251610.tif"</span></span>
-<span><span class="co">#&gt;  [47] "IDE00425.202306251620.tif" "IDE00425.202306251630.tif"</span></span>
-<span><span class="co">#&gt;  [49] "IDE00425.202306251640.tif" "IDE00425.202306251650.tif"</span></span>
-<span><span class="co">#&gt;  [51] "IDE00425.202306251700.tif" "IDE00425.202306251710.tif"</span></span>
-<span><span class="co">#&gt;  [53] "IDE00425.202306251720.tif" "IDE00425.202306251730.tif"</span></span>
-<span><span class="co">#&gt;  [55] "IDE00425.202306251740.tif" "IDE00425.202306251750.tif"</span></span>
-<span><span class="co">#&gt;  [57] "IDE00425.202306251800.tif" "IDE00425.202306251810.tif"</span></span>
-<span><span class="co">#&gt;  [59] "IDE00425.202306251820.tif" "IDE00425.202306251830.tif"</span></span>
-<span><span class="co">#&gt;  [61] "IDE00425.202306251840.tif" "IDE00425.202306251850.tif"</span></span>
-<span><span class="co">#&gt;  [63] "IDE00425.202306251900.tif" "IDE00425.202306251910.tif"</span></span>
-<span><span class="co">#&gt;  [65] "IDE00425.202306251920.tif" "IDE00425.202306251930.tif"</span></span>
-<span><span class="co">#&gt;  [67] "IDE00425.202306251940.tif" "IDE00425.202306251950.tif"</span></span>
-<span><span class="co">#&gt;  [69] "IDE00425.202306252000.tif" "IDE00425.202306252010.tif"</span></span>
-<span><span class="co">#&gt;  [71] "IDE00425.202306252020.tif" "IDE00425.202306252030.tif"</span></span>
-<span><span class="co">#&gt;  [73] "IDE00425.202306252040.tif" "IDE00425.202306252050.tif"</span></span>
-<span><span class="co">#&gt;  [75] "IDE00425.202306252100.tif" "IDE00425.202306252110.tif"</span></span>
-<span><span class="co">#&gt;  [77] "IDE00425.202306252120.tif" "IDE00425.202306252130.tif"</span></span>
-<span><span class="co">#&gt;  [79] "IDE00425.202306252140.tif" "IDE00425.202306252150.tif"</span></span>
-<span><span class="co">#&gt;  [81] "IDE00425.202306252200.tif" "IDE00425.202306252210.tif"</span></span>
-<span><span class="co">#&gt;  [83] "IDE00425.202306252220.tif" "IDE00425.202306252230.tif"</span></span>
-<span><span class="co">#&gt;  [85] "IDE00425.202306252240.tif" "IDE00425.202306252250.tif"</span></span>
-<span><span class="co">#&gt;  [87] "IDE00425.202306252300.tif" "IDE00425.202306252310.tif"</span></span>
-<span><span class="co">#&gt;  [89] "IDE00425.202306252320.tif" "IDE00425.202306252330.tif"</span></span>
-<span><span class="co">#&gt;  [91] "IDE00425.202306252340.tif" "IDE00425.202306252350.tif"</span></span>
-<span><span class="co">#&gt;  [93] "IDE00425.202306260000.tif" "IDE00425.202306260010.tif"</span></span>
-<span><span class="co">#&gt;  [95] "IDE00425.202306260020.tif" "IDE00425.202306260030.tif"</span></span>
-<span><span class="co">#&gt;  [97] "IDE00425.202306260040.tif" "IDE00425.202306260050.tif"</span></span>
-<span><span class="co">#&gt;  [99] "IDE00425.202306260100.tif" "IDE00425.202306260110.tif"</span></span>
-<span><span class="co">#&gt; [101] "IDE00425.202306260120.tif" "IDE00425.202306260130.tif"</span></span>
-<span><span class="co">#&gt; [103] "IDE00425.202306260140.tif" "IDE00425.202306260150.tif"</span></span>
-<span><span class="co">#&gt; [105] "IDE00425.202306260200.tif" "IDE00425.202306260210.tif"</span></span>
-<span><span class="co">#&gt; [107] "IDE00425.202306260220.tif" "IDE00425.202306260230.tif"</span></span>
-<span><span class="co">#&gt; [109] "IDE00425.202306260250.tif" "IDE00425.202306260300.tif"</span></span>
-<span><span class="co">#&gt; [111] "IDE00425.202306260310.tif" "IDE00425.202306260320.tif"</span></span>
-<span><span class="co">#&gt; [113] "IDE00425.202306260330.tif" "IDE00425.202306260340.tif"</span></span>
-<span><span class="co">#&gt; [115] "IDE00425.202306260350.tif" "IDE00425.202306260400.tif"</span></span>
-<span><span class="co">#&gt; [117] "IDE00425.202306260410.tif" "IDE00425.202306260420.tif"</span></span>
-<span><span class="co">#&gt; [119] "IDE00425.202306260430.tif" "IDE00425.202306260440.tif"</span></span>
-<span><span class="co">#&gt; [121] "IDE00425.202306260450.tif" "IDE00425.202306260500.tif"</span></span>
-<span><span class="co">#&gt; [123] "IDE00425.202306260510.tif" "IDE00425.202306260520.tif"</span></span>
-<span><span class="co">#&gt; [125] "IDE00425.202306260530.tif" "IDE00425.202306260540.tif"</span></span>
-<span><span class="co">#&gt; [127] "IDE00425.202306260550.tif" "IDE00425.202306260600.tif"</span></span>
-<span><span class="co">#&gt; [129] "IDE00425.202306260610.tif" "IDE00425.202306260620.tif"</span></span>
-<span><span class="co">#&gt; [131] "IDE00425.202306260630.tif" "IDE00425.202306260640.tif"</span></span>
-<span><span class="co">#&gt; [133] "IDE00425.202306260650.tif" "IDE00425.202306260700.tif"</span></span>
-<span><span class="co">#&gt; [135] "IDE00425.202306260710.tif" "IDE00425.202306260740.tif"</span></span>
-<span><span class="co">#&gt; [137] "IDE00425.202306260800.tif"</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="using-get_satellite_imagery">Using get_satellite_imagery()<a class="anchor" aria-label="anchor" href="#using-get_satellite_imagery"></a>
-</h3>
-<p><code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BOM satellite GeoTIFF
-imagery, returning a SpatRaster object and takes two arguments. Files
-are available at ten minute update frequency with a 24 hour delete time.
-It is suggested to check file availability first by using
-<code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
-<ul>
-<li><p><code>product_id</code>, a character value of the BOM product ID
-to download. Alternatively, a vector of values from
-<code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is
-mandatory.</p></li>
-<li><p><code>scans</code> a numeric value for the number of scans to
-download, starting with the most recent and progressing backwards,
-<em>e.g.</em>, <code>1</code> - the most recent single scan available ,
-<code>6</code> - the most recent hour available, <code>12</code> - the
-most recent 2 hours available, etc. Negating will return the oldest
-files first. Defaults to 1. This argument is optional.</p></li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Specify product ID and scans</span></span>
-<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDE00425"</span>, scans <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/DPIRD-FSI/weatherOz/" class="external-link">weatherOz</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Same, but use "avail" from prior to specify images for download</span></span>
-<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="va">avail</span>, scans <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">terra::plot()</a></code> has been re-exported to simplify
-visualising these files while using {weatherOz}.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<img src="plot_satellite-1.png" alt="plot of chunk plot_satellite"><p class="caption">
-plot of chunk plot_satellite
-</p>
-</div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-weatheroz-to-retrieve-radar-imagery">Using {weatherOz} to retrieve radar imagery<a class="anchor" aria-label="anchor" href="#using-weatheroz-to-retrieve-radar-imagery"></a>
-</h2>
-<p>{weatherOz} provides functionality to retrieve the latest radar
-imagery provided by BOM through public FTP. These are the latest
-snapshots for each radar locations at various radar ranges
-<em>e.g.</em>, 512km, 256km, 128km and 64km for some stations.</p>
-<div class="section level3">
-<h3 id="using-get_available_radar">Using get_available_radar()<a class="anchor" aria-label="anchor" href="#using-get_available_radar"></a>
-</h3>
-<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar
-imagery from the BOM FTP and returns a data frame for reference. This
-data frame contains the product_id, which is required when using the
-<code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the
-latest <code>.png</code> files of BOM radar imagery which are typically
-updated each 6-10 minutes. Only the most recent image is retrieved for
-each radar location. There are usually several radar ranges available
-for each radar location, such as 512km, 256km, 128km and possibly 64km.
-The arguments are:</p>
-<ul>
-<li>
-<code>radar_id</code> which is the BOM radar ID number; this
-defaults to ‘all’ which will return a data frame of all radar IDs in
-Australia.</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_available_radar.html">get_available_radar</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; data.table [6, 15]</span></span>
-<span><span class="co">#&gt; product_id chr IDR641 IDR642 IDR643 IDR644 IDR31D IDR251</span></span>
-<span><span class="co">#&gt; LocationID chr 64 64 64 64 31 25</span></span>
-<span><span class="co">#&gt; range      chr 512km 256km 128km 64km NA 512km</span></span>
-<span><span class="co">#&gt; Name       chr Adelaide Adelaide Adelaide Adelaide Albany A~</span></span>
-<span><span class="co">#&gt; Longitude  dbl 138.4689 138.4689 138.4689 138.4689 117.8163~</span></span>
-<span><span class="co">#&gt; Latitude   dbl -34.6169 -34.6169 -34.6169 -34.6169 -34.9418~</span></span>
-<span><span class="co">#&gt; Radar_id   int 64 64 64 64 31 25</span></span>
-<span><span class="co">#&gt; Full_Name  chr Adelaide (Buckland Park) Adelaide (Buckland ~</span></span>
-<span><span class="co">#&gt; IDRnn0name chr BuckPk BuckPk BuckPk BuckPk Albany AliceSp</span></span>
-<span><span class="co">#&gt; IDRnn1name chr BucklandPk BucklandPk BucklandPk BucklandPk ~</span></span>
-<span><span class="co">#&gt; State      chr SA SA SA SA WA NT</span></span>
-<span><span class="co">#&gt; Type       chr Doppler Doppler Doppler Doppler Doppler Stan~</span></span>
-<span><span class="co">#&gt; Group_     chr Yes Yes Yes Yes Yes Yes</span></span>
-<span><span class="co">#&gt; Status     chr Public Public Public Public Public Public</span></span>
-<span><span class="co">#&gt; Archive    chr BuckPk BuckPk BuckPk BuckPk Albany AliceSp</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="using-get_radar_imagery">Using get_radar_imagery()<a class="anchor" aria-label="anchor" href="#using-get_radar_imagery"></a>
-</h3>
-<p><code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> fetches the latest BOM radar imagery
-for a given product ID. The files available are the latest
-<code>.png</code> files of BOM radar imagery, which are typically
-updated each 6-10 minutes. Only the most recent image is retrieved for
-each radar location. There are usually several radar ranges available
-for each radar location, such as 512km, 256km, 128km and possibly 64km.
-The only argument is:</p>
-<ul>
-<li>
-<code>product_id</code> the BOM product_id associated with each
-radar imagery file. These can be obtained from the
-<code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be
-specified and the function will accept only one at a time.</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span><span class="op">(</span>product_id <span class="op">=</span> <span class="st">"IDR032"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; file downloaded to:/var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//RtmphuECUG/file12454264e0df9.png</span></span>
-<span><span class="fu"><a href="../reference/plot-SpatRaster-ANY-method.html">plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<img src="get_radar_imagery-1.png" alt="plot of chunk get_radar_imagery"><p class="caption">
-plot of chunk get_radar_imagery
-</p>
-</div>
-</div>
+<span><span class="va">Northam</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/find_nearby_stations.html">find_nearby_stations</a></span><span class="op">(</span></span>
+<span>    longitude <span class="op">=</span> <span class="fl">116.6620</span>,</span>
+<span>    latitude <span class="op">=</span> <span class="op">-</span><span class="fl">31.6540</span>,</span>
+<span>    which_api <span class="op">=</span> <span class="st">"dpird"</span>,</span>
+<span>    api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"DPIRD_API_KEY"</span><span class="op">)</span>,</span>
+<span>    distance_km <span class="op">=</span> <span class="fl">20</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Northam</span></span>
+<span><span class="co">#&gt;    station_code station_name longitude  latitude state elev_m</span></span>
+<span><span class="co">#&gt; 1:           NO      Northam  116.6942 -31.65161    WA    163</span></span>
+<span><span class="co">#&gt; 2:           MK       Muresk  116.6913 -31.72772    WA    251</span></span>
+<span><span class="co">#&gt;                                                                   owner distance_km</span></span>
+<span><span class="co">#&gt; 1: WA Department of Primary Industries and Regional Development (DPIRD)        3.23</span></span>
+<span><span class="co">#&gt; 2: WA Department of Primary Industries and Regional Development (DPIRD)        7.93</span></span></code></pre></div>
+<p>There are two stations within 20km of the coordinates for Northam, WA
+that we provided. We’ll choose the closest, Northam, station_code NO to
+fetch the daily weather data for all air temperature, rainfall and
+relative humidity values.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dpird_daily</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_dpird_summaries.html">get_dpird_summaries</a></span><span class="op">(</span></span>
+<span>  station_code <span class="op">=</span> <span class="st">"NO"</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="st">"2022-01-01"</span>,</span>
+<span>  end_date <span class="op">=</span> <span class="st">"2022-12-31"</span>,</span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"airTemperature"</span>, <span class="st">"rainfall"</span>, <span class="st">"relativeHumidity"</span><span class="op">)</span>,</span>
+<span>  api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"DPIRD_API_KEY"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dpird_daily</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h2 id="using-weatheroz-to-fetch-patched-point-silo-data">Using {weatherOz} to Fetch Patched Point SILO Data<a class="anchor" aria-label="anchor" href="#using-weatheroz-to-fetch-patched-point-silo-data"></a>
 </h2>
-<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml" class="external-link">Australian
-Bureau of Meteorology (BOM) Weather Data Services</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/anon-ftp.shtml" class="external-link">Australian
-Bureau of Meteorology (BOM) FTP Public Products</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml" class="external-link">Australian
-Bureau of Meteorology (BOM) Weather Data Services Agriculture
-Bulletins</a></p>
-<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml" class="external-link">Australian
-Bureau of Meteorology (BOM) Weather Data Services Observation of
-Rainfall</a></p>
-<p><a href="http://www.bom.gov.au/australia/satellite/index.shtml" class="external-link">Australian
-Bureau of Meteorology (BOM) High-definition satellite images</a></p>
-<p>Stephen J. Jeffrey, John O. Carter, Keith B. Moodie, Alan R. Beswick,
-Using spatial interpolation to construct a comprehensive archive of
-Australian climate data, <em>Environmental Modelling &amp;
-Software</em>, Volume 16, Issue 4, 2001, pages 309-330, ISSN 1364-8152,
-<a href="https://doi.org/10.1016/S1364-8152(01)00008-1" class="external-link">DOI:
-10.1016/S1364-8152(01)00008-1</a>.</p>
+<p>Daily weather station observations with interpolated missing values
+are available from SILO. The following example will demonstrate how you
+can find and download weather station data for stations in or near
+Toowoomba, Qld for the year of 2022. This example assumes that you have
+stored your SILO API key (email address) in your .Renviron file.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/DPIRD-FSI/weatherOz/" class="external-link">weatherOz</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Tbar</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/find_nearby_stations.html">find_nearby_stations</a></span><span class="op">(</span></span>
+<span>    longitude <span class="op">=</span> <span class="fl">151.9507</span>,</span>
+<span>    latitude <span class="op">=</span> <span class="op">-</span><span class="fl">27.5598</span>,</span>
+<span>    which_api <span class="op">=</span> <span class="st">"silo"</span>,</span>
+<span>    api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SILO_API_KEY"</span><span class="op">)</span>,</span>
+<span>    distance_km <span class="op">=</span> <span class="fl">20</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Tbar</span></span>
+<span><span class="co">#&gt;     station_code              station_name longitude latitude state elev_m owner</span></span>
+<span><span class="co">#&gt;  1:       041103                 Toowoomba  151.9317 -27.5836   QLD  691.0   BOM</span></span>
+<span><span class="co">#&gt;  2:       041529         Toowoomba Airport  151.9134 -27.5425   QLD  640.9   BOM</span></span>
+<span><span class="co">#&gt;  3:       041369                    Moyola  151.8819 -27.5233   QLD  559.0   BOM</span></span>
+<span><span class="co">#&gt;  4:       041039           Gowrie Junction  151.9000 -27.5000   QLD  484.6   BOM</span></span>
+<span><span class="co">#&gt;  5:       040421  Spring Bluff Railway Stn  151.9900 -27.4636   QLD  480.0   BOM</span></span>
+<span><span class="co">#&gt;  6:       041126                 Westbrook  151.8292 -27.6197   QLD  539.0   BOM</span></span>
+<span><span class="co">#&gt;  7:       040153 Murphys Creek Post Office  152.0667 -27.4667   QLD  228.0   BOM</span></span>
+<span><span class="co">#&gt;  8:       040096       Helidon Post Office  152.1246 -27.5504   QLD  155.0   BOM</span></span>
+<span><span class="co">#&gt;  9:       041031        Geham State School  152.0150 -27.4058   QLD  600.0   BOM</span></span>
+<span><span class="co">#&gt; 10:       041011      Cambooya Post Office  151.8650 -27.7072   QLD  476.0   BOM</span></span>
+<span><span class="co">#&gt; 11:       041512           Cooby Creek Dam  151.9244 -27.3825   QLD  497.0   BOM</span></span>
+<span><span class="co">#&gt;     distance_km</span></span>
+<span><span class="co">#&gt;  1:    3.241492</span></span>
+<span><span class="co">#&gt;  2:    4.149375</span></span>
+<span><span class="co">#&gt;  3:    7.903524</span></span>
+<span><span class="co">#&gt;  4:    8.317686</span></span>
+<span><span class="co">#&gt;  5:   11.375373</span></span>
+<span><span class="co">#&gt;  6:   13.699640</span></span>
+<span><span class="co">#&gt;  7:   15.425992</span></span>
+<span><span class="co">#&gt;  8:   17.172757</span></span>
+<span><span class="co">#&gt;  9:   18.257690</span></span>
+<span><span class="co">#&gt; 10:   18.433372</span></span>
+<span><span class="co">#&gt; 11:   19.881135</span></span></code></pre></div>
+<p>There are 11 stations within 20km of the coordinates for Toowoomba,
+Qld that we provided in the SILO database. We’ll choose the closest,
+Toowoomba, station_code 041103 to fetch the daily weather data for all
+air temperature, rainfall and relative humidity values.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ppd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_patched_point.html">get_patched_point</a></span><span class="op">(</span></span>
+<span>  station_code <span class="op">=</span> <span class="st">"041103"</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="st">"2022-01-01"</span>,</span>
+<span>  end_date <span class="op">=</span> <span class="st">"2022-12-31"</span>,</span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"max_temp"</span>, <span class="st">"min_temp"</span>, <span class="st">"rain"</span>, <span class="st">"rh_tmax"</span>, <span class="st">"rh_tmin"</span><span class="op">)</span>,</span>
+<span>  api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SILO_API_KEY"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ppd</span></span>
+<span><span class="co">#&gt;      station_code station_name longitude latitude  elev_m       date year month  day</span></span>
+<span><span class="co">#&gt;   1:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-01-01 2022  2022 2022</span></span>
+<span><span class="co">#&gt;   2:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-01-02 2022  2022 2022</span></span>
+<span><span class="co">#&gt;   3:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-01-03 2022  2022 2022</span></span>
+<span><span class="co">#&gt;   4:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-01-04 2022  2022 2022</span></span>
+<span><span class="co">#&gt;   5:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-01-05 2022  2022 2022</span></span>
+<span><span class="co">#&gt;  ---                                                                                </span></span>
+<span><span class="co">#&gt; 361:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-12-27 2022  2022 2022</span></span>
+<span><span class="co">#&gt; 362:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-12-28 2022  2022 2022</span></span>
+<span><span class="co">#&gt; 363:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-12-29 2022  2022 2022</span></span>
+<span><span class="co">#&gt; 364:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-12-30 2022  2022 2022</span></span>
+<span><span class="co">#&gt; 365:       041103    Toowoomba  151.9317 -27.5836 691.0 m 2022-12-31 2022  2022 2022</span></span>
+<span><span class="co">#&gt;       extracted daily_rain daily_rain_source max_temp max_temp_source min_temp</span></span>
+<span><span class="co">#&gt;   1: 2023-07-08        7.6                25     22.8              25     16.6</span></span>
+<span><span class="co">#&gt;   2: 2023-07-08        0.1                25     27.7              25     14.2</span></span>
+<span><span class="co">#&gt;   3: 2023-07-08        0.0                25     29.4              25     13.8</span></span>
+<span><span class="co">#&gt;   4: 2023-07-08        0.0                25     30.0              25     16.8</span></span>
+<span><span class="co">#&gt;   5: 2023-07-08        0.0                25     29.5              25     17.5</span></span>
+<span><span class="co">#&gt;  ---                                                                          </span></span>
+<span><span class="co">#&gt; 361: 2023-07-08        0.0                25     26.2              25     15.1</span></span>
+<span><span class="co">#&gt; 362: 2023-07-08        0.2                25     26.7              25     13.0</span></span>
+<span><span class="co">#&gt; 363: 2023-07-08        0.0                25     27.6              25     14.1</span></span>
+<span><span class="co">#&gt; 364: 2023-07-08        0.7                25     27.0              25     17.0</span></span>
+<span><span class="co">#&gt; 365: 2023-07-08        0.3                25     27.7              25     16.4</span></span>
+<span><span class="co">#&gt;      min_temp_source rh_tmax rh_tmax_source rh_tmin rh_tmin_source</span></span>
+<span><span class="co">#&gt;   1:              25    72.1             26   100.0             26</span></span>
+<span><span class="co">#&gt;   2:              25    47.1             26   100.0             26</span></span>
+<span><span class="co">#&gt;   3:              25    38.8             26   100.0             26</span></span>
+<span><span class="co">#&gt;   4:              25    43.1             26    95.7             26</span></span>
+<span><span class="co">#&gt;   5:              25    49.2             26   100.0             26</span></span>
+<span><span class="co">#&gt;  ---                                                              </span></span>
+<span><span class="co">#&gt; 361:              25    47.9             26    95.0             26</span></span>
+<span><span class="co">#&gt; 362:              25    43.7             26   100.0             26</span></span>
+<span><span class="co">#&gt; 363:              25    44.1             26   100.0             26</span></span>
+<span><span class="co">#&gt; 364:              25    60.3             26   100.0             26</span></span>
+<span><span class="co">#&gt; 365:              25    50.9             26   100.0             26</span></span></code></pre></div>
+<p>{weatherOz} offers much more functionality that is detailed in other
+vignettes that document how to use it to get station metadata for any
+station in the DPIRD or SILO databases, get extreme weather events for
+the DPIRD station network, get minute data for DPIRD stations, get APSIM
+formatted data from SILO, get ag bulletins, précis forecasts and various
+imagery files from BOM in the respective vignettes for DPIRD, SILO and
+BOM data available through {weatherOz}.</p>
 </div>
 <div class="section level2">
-<h2 id="appendix-1---output-from-get_precis_forecast">Appendix 1 - Output from get_precis_forecast()<a class="anchor" aria-label="anchor" href="#appendix-1---output-from-get_precis_forecast"></a>
+<h2 id="appendix-1---map-of-dpird-station-locations">Appendix 1 - Map of DPIRD Station Locations<a class="anchor" aria-label="anchor" href="#appendix-1---map-of-dpird-station-locations"></a>
 </h2>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data
-frame of the 7 day short forecast with the following fields:</p>
-<table class="table">
-<tr>
-<th>
-Field Name
-</th>
-<th>
-Description
-</th>
-</tr>
-<tr>
-<td>
-index
-</td>
-<td>
-Forecast index number, 0 = current day … 7 day
-</td>
-</tr>
-<tr>
-<td>
-product_id
-</td>
-<td>
-BOM Product ID from which the data are derived
-</td>
-</tr>
-<tr>
-<td>
-state
-</td>
-<td>
-State name (postal code abbreviation)
-</td>
-</tr>
-<tr>
-<td>
-town
-</td>
-<td>
-Town name for forecast location
-</td>
-</tr>
-<tr>
-<td>
-aac
-</td>
-<td>
-AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each
-location
-</td>
-</tr>
-<tr>
-<td>
-lat
-</td>
-<td>
-Latitude of named location (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
-lon
-</td>
-<td>
-Longitude of named location (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
-elev
-</td>
-<td>
-Elevation of named location (metres)
-</td>
-</tr>
-<tr>
-<td>
-start_time_local
-</td>
-<td>
-Start of forecast date and time in local TZ
-</td>
-</tr>
-<tr>
-<td>
-end_time_local
-</td>
-<td>
-End of forecast date and time in local TZ
-</td>
-</tr>
-<tr>
-<td>
-UTC_offset
-</td>
-<td>
-Hours offset from difference in hours and minutes from Coordinated
-Universal Time (UTC) for <code>start_time_local</code> and
-<code>end_time_local</code>
-</td>
-</tr>
-<tr>
-<td>
-start_time_utc
-</td>
-<td>
-Start of forecast date and time in UTC
-</td>
-</tr>
-<tr>
-<td>
-end_time_utc
-</td>
-<td>
-End of forecast date and time in UTC
-</td>
-</tr>
-<tr>
-<td>
-maximum_temperature
-</td>
-<td>
-Maximum forecast temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-minimum_temperature
-</td>
-<td>
-Minimum forecast temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-lower_precipitation_limit
-</td>
-<td>
-Lower forecast precipitation limit (millimetres)
-</td>
-</tr>
-<tr>
-<td>
-upper_precipitation_limit
-</td>
-<td>
-Upper forecast precipitation limit (millimetres)
-</td>
-</tr>
-<tr>
-<td>
-precis
-</td>
-<td>
-Précis forecast (a short summary, less than 30 characters)
-</td>
-</tr>
-<tr>
-<td>
-probability_of_precipitation
-</td>
-<td>
-Probability of precipitation (percent)
-</td>
-</tr>
-</table>
-</div>
-<div class="section level2">
-<h2 id="appendix-2---output-from-get_ag_bulletin">Appendix 2 - Output from get_ag_bulletin()<a class="anchor" aria-label="anchor" href="#appendix-2---output-from-get_ag_bulletin"></a>
-</h2>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data
-frame of the agriculture bulletin with the following fields:</p>
-<table class="table">
-<tr>
-<th>
-Field Name
-</th>
-<th>
-Description
-</th>
-</tr>
-<tr>
-<td>
-product_id
-</td>
-<td>
-BOM Product ID from which the data are derived
-</td>
-</tr>
-<tr>
-<td>
-state
-</td>
-<td>
-State name (postal code abbreviation)
-</td>
-</tr>
-<tr>
-<td>
-dist
-</td>
-<td>
-BOM rainfall district
-</td>
-</tr>
-<tr>
-<td>
-name
-</td>
-<td>
-Full station name (some stations have been retired so “station” will be
-same, this is the full designation
-</td>
-</tr>
-<tr>
-<td>
-wmo
-</td>
-<td>
-World Meteorological Organization number (unique ID used worldwide)
-</td>
-</tr>
-<tr>
-<td>
-site
-</td>
-<td>
-Unique BOM identifier for each station
-</td>
-</tr>
-<tr>
-<td>
-station
-</td>
-<td>
-Station name
-</td>
-</tr>
-<tr>
-<td>
-obs-time-local
-</td>
-<td>
-Observation time
-</td>
-</tr>
-<tr>
-<td>
-obs-time-utc
-</td>
-<td>
-Observation time (time in UTC)
-</td>
-</tr>
-<tr>
-<td>
-time-zone
-</td>
-<td>
-Time zone for observation
-</td>
-</tr>
-<tr>
-<td>
-lat
-</td>
-<td>
-Latitude (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
-lon
-</td>
-<td>
-Longitude (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
-elev_m
-</td>
-<td>
-Station elevation (metres)
-</td>
-</tr>
-<tr>
-<td>
-bar_ht
-</td>
-<td>
-Bar height (metres)
-</td>
-</tr>
-<tr>
-<td>
-station
-</td>
-<td>
-BOM station name
-</td>
-</tr>
-<tr>
-<td>
-start
-</td>
-<td>
-Year data collection starts
-</td>
-</tr>
-<tr>
-<td>
-end
-</td>
-<td>
-Year data collection ends (will always be current)
-</td>
-</tr>
-<tr>
-<td>
-r
-</td>
-<td>
-Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em>
-</td>
-</tr>
-<tr>
-<td>
-tn
-</td>
-<td>
-Minimum temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-tx
-</td>
-<td>
-Maximum temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-twd
-</td>
-<td>
-Wet bulb depression (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-ev
-</td>
-<td>
-Evaporation (millimetres)
-</td>
-</tr>
-<tr>
-<td>
-tg
-</td>
-<td>
-Terrestrial minimum temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-sn
-</td>
-<td>
-Sunshine (hours)
-</td>
-</tr>
-<tr>
-<td>
-solr
-</td>
-<td>
-Solar Radiation MJ/sq m
-</td>
-</tr>
-<tr>
-<td>
-t5
-</td>
-<td>
-5cm soil temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-t10
-</td>
-<td>
-10cm soil temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-t20
-</td>
-<td>
-20cm soil temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-t50
-</td>
-<td>
-50cm soil temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-t1m
-</td>
-<td>
-1m soil temperature (degrees Celsius)
-</td>
-</tr>
-<tr>
-<td>
-wr
-</td>
-<td>
-Wind run (kilometres)
-</td>
-</tr>
-</table>
-</div>
-<div class="section level2">
-<h2 id="appendix-3---output-from-get_weather_bulletin">Appendix 3 - Output from get_weather_bulletin()<a class="anchor" aria-label="anchor" href="#appendix-3---output-from-get_weather_bulletin"></a>
-</h2>
-<p>The function <code>get_weather_bulletin()</code> returns a data frame
-of weather observations for 0900 or 1500 for a nominated state.
-Observations differ between states, but contain some or all of the
-following fields. All units are metric (temperatures in Celsius; wind
-speeds in kilometres per hour; rainfall amounts in millimetres; pressure
-in hectoPascals). “AWS” in a station name denotes observations from an
-Automatic Weather Station.</p>
-<table class="table">
-<tr>
-<th>
-Field Name
-</th>
-<th>
-Description
-</th>
-</tr>
-<tr>
-<td>
-stations
-</td>
-<td>
-Name of observing station
-</td>
-</tr>
-<tr>
-<td>
-cld8ths
-</td>
-<td>
-Octas (eights) of cloud (0-8); <code>NA</code> indicates sky obscured
-</td>
-</tr>
-<tr>
-<td>
-wind_dir
-</td>
-<td>
-Direction from which wind blows (16 compass directions, measured at
-height of 10m)
-</td>
-</tr>
-<tr>
-<td>
-wind_speed_kmh
-</td>
-&lt;td
-
-</tr>
-<tr>
-<td>
-temp / temp_c_dry/_terr
-</td>
-<td>
-Ambient dry air temperature measured at height of 1.2 metres
-</td>
-</tr>
-<tr>
-<td>
-temp_c_dew
-</td>
-<td>
-Dew-point temperature measured at height of 1.2 metres
-</td>
-</tr>
-<tr>
-<td>
-temp_c_max
-</td>
-<td>
-Maximum temperature for last 24 hours (0900 bulletin) or 6 hours (1500
-bulletin).
-</td>
-</tr>
-<tr>
-<td>
-temp_c_min
-</td>
-<td>
-Minimum temperature for last 24 hours (0900 bulletin only)
-</td>
-</tr>
-<tr>
-<td>
-temp_c_gr
-</td>
-<td>
-Wet bulb temperature measured at height of 1.2 metres
-</td>
-</tr>
-<tr>
-<td>
-rhpercent
-</td>
-<td>
-Relative humidity
-</td>
-</tr>
-<tr>
-<td>
-barhpa / mslpresshpa
-</td>
-<td>
-Barometric pressure
-</td>
-</tr>
-<tr>
-<td>
-rain_mm
-</td>
-<td>
-Total rainfall since previous bulletin (<code>NA</code> denotes amount
-less than 1mm)
-</td>
-</tr>
-<tr>
-<td>
-days
-</td>
-<td>
-If present, denotes number of days since previous bulletin
-</td>
-</tr>
-<tr>
-<td>
-weather
-</td>
-<td>
-Description of current weather
-</td>
-</tr>
-<tr>
-<td>
-seastate (QLD only)
-</td>
-<td>
-See below for description
-</td>
-</tr>
-</table>
-<p><br></p>
-<p>Seastate is described by a text string formed from the three
-components of (sea state, swell, direction). Sea state is denoted “C”
-(Calm), “SM” (Smooth), “SL” (Slight), “M” (Moderate), “R” (Rough), “VR”
-(Very Rough), “H” (High), “VH” (Very High), or “PH” (Phenomenal). Swell
-is denoted “LS” (Low Short), “LA” (Low Average), “LL” (Low Long), “MS”
-(Moderate Short), “MA” (Mod Average), “ML” (Mod Long), “HS” (Heavy
-Short), “HA” (heavy Average), “HL” (Heavy Long), or “C” (Confused).
-Direction denotes direction from which the swell is coming.</p>
-<p>Names of rainfall and temperature variables for some states include
-prefixes or suffixes defining the time period over which observations
-apply (for example, “temp_c_6hmax” for maximum temperature between 0980
-and 1500, or “temp_c_9ammin” for minimum temperature observed at 9am yet
-included in 1500 bulletin).</p>
-</div>
-<div class="section level2">
-<h2 id="appendix-4---output-from-get_coastal_forecast">Appendix 4 - Output from get_coastal_forecast()<a class="anchor" aria-label="anchor" href="#appendix-4---output-from-get_coastal_forecast"></a>
-</h2>
-<p>The output of <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code> will return a data
-frame with coastal waters forecast values of each area within the given
-state with the following fields:</p>
-<table class="table">
-<tr>
-<th>
-Field Name
-</th>
-<th>
-Description
-</th>
-</tr>
-<tr>
-<td>
-index
-</td>
-<td>
-Forecast index number. 0 = current day
-</td>
-</tr>
-<tr>
-<td>
-product_id
-</td>
-<td>
-BOM Product ID from which the data are derived
-</td>
-</tr>
-<tr>
-<td>
-type
-</td>
-<td>
-Forecast Region type e.g. Coastal
-</td>
-</tr>
-<tr>
-<td>
-state_code
-</td>
-<td>
-State name (postal code abbreviation)
-</td>
-</tr>
-<tr>
-<td>
-dist_name
-</td>
-<td>
-Name of forecast district
-</td>
-</tr>
-<tr>
-<td>
-pt_1_name
-</td>
-<td>
-Start of forecast district
-</td>
-</tr>
-<tr>
-<td>
-pt_2_name
-</td>
-<td>
-End of forecast district
-</td>
-</tr>
-<tr>
-<td>
-aac
-</td>
-<td>
-AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each
-location
-</td>
-</tr>
-<tr>
-<td>
-start_time_local
-</td>
-<td>
-Start of forecast date and time in local TZ
-</td>
-</tr>
-<tr>
-<td>
-end_time_local
-</td>
-<td>
-End of forecast date and time in local TZ
-</td>
-</tr>
-<tr>
-<td>
-UTC_offset
-</td>
-<td>
-Hours offset from difference in hours and minutes from Coordinated
-Universal Time (UTC) for <code>start_time_local</code> and
-<code>end_time_local</code>
-</td>
-</tr>
-<tr>
-<td>
-start_time_utc
-</td>
-<td>
-Start of forecast date and time in UTC
-</td>
-</tr>
-<tr>
-<td>
-end_time_utc
-</td>
-<td>
-End of forecast date and time in UTC
-</td>
-</tr>
-<tr>
-<td>
-forecast_seas
-</td>
-<td>
-Forecast sea conditions
-</td>
-</tr>
-<tr>
-<td>
-forecast_weather
-</td>
-<td>
-Forecast weather summary
-</td>
-</tr>
-<tr>
-<td>
-forecast_winds
-</td>
-<td>
-Forecast winds summary
-</td>
-</tr>
-<tr>
-<td>
-forecast_swell1
-</td>
-<td>
-Forecast primary swell summary
-</td>
-</tr>
-<tr>
-<td>
-forecast_swell2
-</td>
-<td>
-Forecast seondary swell summary (not always provided)
-</td>
-</tr>
-<tr>
-<td>
-forecast_caution
-</td>
-<td>
-Forecast caution issued (not always provided)
-</td>
-</tr>
-<tr>
-<td>
-marine_forecast
-</td>
-<td>
-Additional marine forecast warning information (not always provided)
-</td>
-</tr>
-</table>
-<p><br></p>
-</div>
-<div class="section level2">
-<h2 id="appendix-5---map-of-station-locations">Appendix 5 - Map of station locations<a class="anchor" aria-label="anchor" href="#appendix-5---map-of-station-locations"></a>
-</h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># this chunk assumes that you have your DPIRD API key in your .Renviron file</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggthemes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"maps"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"mapproj"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"gridExtra"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"grid"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"grid"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"maps"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">mapproj</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, package <span class="op">=</span> <span class="st">"weatherOz"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html" class="external-link">setDT</a></span><span class="op">(</span><span class="va">stations_site_list</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">Aust_stations</span> <span class="op">&lt;-</span></span>
-<span>    <span class="va">stations_site_list</span><span class="op">[</span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">state</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ANT"</span>, <span class="st">"null"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"VANUATU|HONIARA"</span>, <span class="va">name</span><span class="op">)</span><span class="op">]</span></span>
+<span>  <span class="va">dpird_stations</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="../reference/get_station_metadata.html">get_station_metadata</a></span><span class="op">(</span>which_api <span class="op">=</span> <span class="st">"DPIRD"</span>,</span>
+<span>                         api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"DPIRD_API_KEY"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">Aust_map</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"world"</span>, region <span class="op">=</span> <span class="st">"Australia"</span><span class="op">)</span></span>
+<span>  <span class="va">Aust_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></span><span class="op">(</span><span class="st">"world"</span>, region <span class="op">=</span> <span class="st">"Australia"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">BOM_stations</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">Aust_stations</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_polygon</span><span class="op">(</span>data <span class="op">=</span> <span class="va">Aust_map</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>,</span>
-<span>                 color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html" class="external-link">grey</a></span><span class="op">(</span><span class="fl">0.7</span><span class="op">)</span>,</span>
-<span>                 fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>  <span class="va">dpird_stations</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">dpird_stations</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">Aust_map</span>,</span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>,</span>
+<span>      color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html" class="external-link">grey</a></span><span class="op">(</span><span class="fl">0.7</span><span class="op">)</span>,</span>
+<span>      fill <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0.58</span>, <span class="fl">0.20</span>, <span class="fl">0.13</span><span class="op">)</span>,</span>
 <span>               size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">coord_map</span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">45</span>, <span class="op">-</span><span class="fl">5</span><span class="op">)</span>,</span>
-<span>              xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">96</span>, <span class="fl">167</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"BOM Station Locations"</span>,</span>
-<span>         subtitle <span class="op">=</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</span>
-<span>         caption <span class="op">=</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)\n</span></span>
-<span><span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">44</span>, <span class="op">-</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span>              xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">112</span>, <span class="fl">154</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"DPIRD Station Locations Available in Weather 2.0 API"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Data: Western Australia Department of Primary Industries and Regional Development (DPIRD)"</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></span>
-<span>  <span class="fu">grid.arrange</span><span class="op">(</span><span class="va">BOM_stations</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/grid/grid.rect.html" class="external-link">grid.rect</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.98</span>,</span>
-<span>            height <span class="op">=</span> <span class="fl">0.98</span>,</span>
-<span>            gp <span class="op">=</span> <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/gpar.html" class="external-link">gpar</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span>,</span>
-<span>                            col <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span>                            fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">dpird_stations</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/grid/grid.rect.html" class="external-link">grid.rect</a></span><span class="op">(</span></span>
+<span>    width <span class="op">=</span> <span class="fl">0.98</span>,</span>
+<span>    height <span class="op">=</span> <span class="fl">0.98</span>,</span>
+<span>    gp <span class="op">=</span> <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/gpar.html" class="external-link">gpar</a></span><span class="op">(</span></span>
+<span>      lwd <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span>      col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      fill <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="dpird-station-locations-map-1.png" alt="plot of chunk dpird-station-locations-map"><p class="caption">
+plot of chunk dpird-station-locations-map
+</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="appendix-2---map-of-silo-station-locations">Appendix 2 - Map of SILO Station Locations<a class="anchor" aria-label="anchor" href="#appendix-2---map-of-silo-station-locations"></a>
+</h2>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggthemes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"gridExtra"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"grid"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"maps"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">mapproj</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">silo_stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_station_metadata.html">get_station_metadata</a></span><span class="op">(</span>which_api <span class="op">=</span> <span class="st">"SILO"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">Aust_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></span><span class="op">(</span><span class="st">"world"</span>, region <span class="op">=</span> <span class="st">"Australia"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">SILO_stations</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">silo_stations</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">Aust_map</span>,</span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>,</span>
+<span>      color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html" class="external-link">grey</a></span><span class="op">(</span><span class="fl">0.7</span><span class="op">)</span>,</span>
+<span>      fill <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0.58</span>, <span class="fl">0.20</span>, <span class="fl">0.13</span><span class="op">)</span>,</span>
+<span>               size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">44</span>, <span class="op">-</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span>              xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">112</span>, <span class="fl">154</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"BOM Station Locations Available in SILO Database"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">SILO_stations</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/grid/grid.rect.html" class="external-link">grid.rect</a></span><span class="op">(</span></span>
+<span>    width <span class="op">=</span> <span class="fl">0.98</span>,</span>
+<span>    height <span class="op">=</span> <span class="fl">0.98</span>,</span>
+<span>    gp <span class="op">=</span> <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/gpar.html" class="external-link">gpar</a></span><span class="op">(</span></span>
+<span>      lwd <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span>      col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      fill <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="silo-station-locations-map-1.png" alt="plot of chunk silo-station-locations-map"><p class="caption">
+plot of chunk silo-station-locations-map
+</p>
+</div>
 </div>
   </div>
 
@@ -1765,7 +409,7 @@ Additional marine forecast warning information (not always provided)
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jimmy Ng, Adam H. Sparks.</p>
+<p>Developed by Rodrigo Pires, Anna Hepworth, Rebecca O’Leary, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage, Keith Pembleton, Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">
